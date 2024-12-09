@@ -1,0 +1,34 @@
+@model Project3.Models.Class
+
+@{
+    Layout = "~/Views/Shared/_layoutadmin.cshtml";
+}
+
+<h2>Add Class</h2>
+
+<form asp-action="admin_class_add" method="post">
+    <div class="mb-3">
+        <label asp-for="CourseId" class="form-label">Course</label>
+        <select asp-for="CourseId" class="form-select" asp-items="@(new SelectList(ViewBag.Courses, "CourseId", "Name"))">
+            <option value="">Select a Course</option>
+        </select>
+        <span asp-validation-for="CourseId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="InstructorId" class="form-label">Instructor</label>
+        <select asp-for="InstructorId" class="form-select" asp-items="@(new SelectList(ViewBag.Instructors, "InstructorId", "Name"))">
+            <option value="">Select an Instructor</option>
+        </select>
+        <span asp-validation-for="InstructorId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label">Description</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Class</button>
+    <a asp-action="admin_class" class="btn btn-secondary">Cancel</a>
+</form>

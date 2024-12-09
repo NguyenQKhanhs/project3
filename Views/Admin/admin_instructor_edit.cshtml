@@ -1,0 +1,87 @@
+﻿@model Project3.Models.Instructor
+
+@{
+    Layout = "~/Views/Shared/_layoutadmin.cshtml";
+}
+
+<br />
+<br />
+<br />
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <h1>Edit Instructor</h1>
+            <div class="container mt-5 px-2">
+                <div class="table-responsive">
+                    <form asp-action="admin_instructor_edit" method="post" enctype="multipart/form-data">
+                        <!-- ID Ẩn -->
+                        <input type="hidden" asp-for="InstructorId" />
+
+                        <!-- Tên -->
+                        <div class="col-md-12">
+                            <label asp-for="Name" class="form-label">Name</label>
+                            <input asp-for="Name" class="form-control" required />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <!-- Giới tính -->
+                        <div class="col-md-12 mt-3">
+                            <label class="form-label">Gender</label>
+                            <div>
+                                <input type="radio" asp-for="Gender" value="Male" id="genderMale" />
+                                <label for="genderMale">Male</label>
+                            </div>
+                            <div>
+                                <input type="radio" asp-for="Gender" value="Female" id="genderFemale" />
+                                <label for="genderFemale">Female</label>
+                            </div>
+                            <div>
+                                <input type="radio" asp-for="Gender" value="Other" id="genderOther" />
+                                <label for="genderOther">Other</label>
+                            </div>
+                            <span asp-validation-for="Gender" class="text-danger"></span>
+                        </div>
+
+                        <!-- Tiểu sử -->
+                        <div class="col-md-12 mt-3">
+                            <label asp-for="Bio" class="form-label">Bio</label>
+                            <textarea asp-for="Bio" class="form-control" required></textarea>
+                            <span asp-validation-for="Bio" class="text-danger"></span>
+                        </div>
+
+                        <!-- Số điện thoại -->
+                        <div class="col-md-12 mt-3">
+                            <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+                            <input asp-for="PhoneNumber" type="text" class="form-control" required />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="col-md-12 mt-3">
+                            <label asp-for="Email" class="form-label">Email</label>
+                            <input asp-for="Email" type="email" class="form-control" required />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <!-- Ảnh -->
+                        <div class="col-md-12 mt-3">
+                            <label class="form-label">Upload Image</label>
+                            <input type="file" name="Image" class="form-control" />
+                            <p class="mt-2">
+                                Current Image:
+                                <img src="@Model.ImageLink" alt="Current Image" style="height: 100px;" />
+                            </p>
+                        </div>
+
+                        <!-- Nút cập nhật -->
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-primary">Update Instructor</button>
+                            <a asp-action="admin_instructor" class="btn btn-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

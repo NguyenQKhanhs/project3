@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Project3.Models.CustomerInformation>
+
+@{
+    Layout = "~/Views/Shared/_layoutadmin.cshtml";
+}
+
+<div class="container-fluid">
+    <h2>Customer Information</h2>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Mark</th>
+                    <th>Status</th>
+                    <th>Created At</th>
+                    <th>Updated At</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.CustomerInformationId</td>
+                            <td>@item.FullName</td>
+                            <td>@item.Email</td>
+                            <td>@item.PhoneNumber</td>
+                            <td>@item.Mark?.ToString("F2")</td>
+                            <td>@item.Status</td>
+                            <td>@item.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>@item.UpdatedAt?.ToString("dd/MM/yyyy HH:mm")</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="8" class="text-center">No customer information available.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+@model Project3.Models.Course
+
+@{
+    Layout = "~/Views/Shared/_layoutadmin.cshtml";
+    var items = Model.Content.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
+}
+
+<br />
+<br />
+<br />
+
+<!--====== COURSES PART START ======-->
+<section id="course" class="course-area pt-140">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="single-course-wrapper">
+                    
+                    <br /><br /><br />
+                    <div class="course-img mb-30">
+                        <img src="@Model.ImageUrl" alt="Image of @Model.Name" style="width: 400px; height: auto;"> <!-- Hiển thị ảnh khóa học -->
+                    </div>
+                    <br /><br /><br />
+                    <h1 style="color:white;">Description</h1>
+                    <p style="font-size:medium; color:white;">@Model.Description</p> <!-- Hiển thị mô tả khóa học -->
+                    <h1 style="color:white">Course Content</h1>
+<ul style="font-size:medium; color:white;">
+    @foreach (var item in items)
+    {
+        <li>+ @Html.Raw(item.Trim() )</li>
+    }
+</ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4" style="padding-top:100px; color:white; font-size:large; border: 1px solid white; border-radius: 50px; width: 400px; height: 500px;">
+                <div class="right-sidebar" style="height: 100%; overflow: auto;">
+                    <div class="course-info mb-50">
+                        <div class="course-title mb-30">
+                            <h1 class="mb-20" style="color:white;">@Model.Name</h1> <!-- Hiển thị tên khóa học -->
+                        </div>
+                        <br />
+                        <h3 class="mb-20 text-center" style="color:white">Course Information</h3
+                            <br />
+                        <ul class="mb-30">
+                            <li class="d-flex justify-content-between">
+                                <span>Starts:</span>
+                                <span class="text-right">@Model.StartDate.ToShortDateString()</span> <!-- Hiển thị ngày bắt đầu -->
+                            </li>
+                            <br />
+                            <li class="d-flex justify-content-between">
+                                <span>Duration:</span>
+                                <span class="text-right">@Model.Duration Weeks</span> <!-- Hiển thị thời gian khóa học -->
+                            </li>
+                            <br />
+                            <li class="d-flex justify-content-between">
+                                <span>Study Level:</span>
+                                <span class="text-right">@Model.StudyLevel</span> <!-- Hiển thị trình độ học vấn -->
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="course-category">
+                        <!-- Nếu có thông tin danh mục có thể hiển thị ở đây -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--====== COURSES PART ENDS ======-->

@@ -1,0 +1,172 @@
+@{
+    Layout = "~/Views/Shared/_layoutadmin.cshtml";
+}
+
+<br>
+<br>
+<br>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body" style="overflow: hidden;">
+            <h5 class="card-title fw-semibold mb-4"></h5>
+            <div class="row">
+                <!-- Thông tin người dùng -->
+                <div class="col-md-4 col-12 mb-3">
+                    <div class="card" style="">
+                        <div class="card-body p-4">
+                            <h3 style="color:white">Name: Trần Văn B</h3>
+                            <br>
+                            <h5 style="color:white">Email: tranvanb456@gmail.com</h5>
+                            <img src="~/adminasset/images/profile/user-3.jpg" alt="" style="height: 100px; width: auto;">
+                        </div>
+                    </div>
+                </div>
+                <!-- Biểu đồ cột ghép -->
+                <div class="col-md-8 col-12 mb-3">
+                    <div style="border: 2px solid white; border-radius: 8px; padding: 10px;">
+                        <canvas id="myChart" style="max-width: 100%; height: 400px;"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- Biểu đồ đường và biểu đồ tròn nằm cạnh nhau -->
+            <div class="row" style="margin-top: 30px;">
+                <!-- Biểu đồ đường -->
+                <div class="col-md-8 col-12 mb-3">
+                    <div style="border: 2px solid white; border-radius: 8px; padding: 10px;">
+                        <canvas id="lineChart" style="max-width: 100%; height: 470px;"></canvas>
+                    </div>
+                </div>
+                <!-- Biểu đồ tròn -->
+                <div class="col-md-4 col-12 mb-3">
+                    <div style="border: 2px solid white; border-radius: 8px; padding: 10px;">
+                        <canvas id="pieChart" style="max-width: 100%; height: 400px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script>
+    // Biểu đồ cột ghép
+    const ctxBar = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+            labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+            datasets: [
+                {
+                    label: 'Pass',
+                    data: [150, 25, 35, 45, 150, 25, 35, 45, 150, 25, 35, 45],
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Fail',
+                    data: [10, 20, 30, 40, 10, 20, 30, 40, 10, 20, 30, 40],
+                    backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                },
+                title: {
+                    display: true,
+                    text: 'Number of students passing and failing'
+                }
+            },
+            scales: {
+                x: { stacked: false },
+                y: { beginAtZero: true }
+            }
+        }
+    });
+
+    // Biểu đồ đường
+    const ctxLine = document.getElementById('lineChart').getContext('2d');
+    const lineChart = new Chart(ctxLine, {
+        type: 'line',
+        data: {
+            labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6'],
+            datasets: [
+                {
+                    label: 'Số lượng đăng ký mới',
+                    data: [30, 45, 60, 20, 80, 50],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 2,
+                    tension: 0.4 // Đường cong mượt
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                },
+                title: {
+                    display: true,
+                    text: 'New Registrations Over Time'
+                }
+            },
+            scales: {
+                x: { beginAtZero: true },
+                y: { beginAtZero: true }
+            }
+        }
+    });
+
+    // Biểu đồ tròn
+    const ctxPie = document.getElementById('pieChart').getContext('2d');
+    const pieChart = new Chart(ctxPie, {
+        type: 'pie',
+        data: {
+            labels: ['Pass', 'Fail'],
+            datasets: [{
+                label: 'Cơ cấu học sinh',
+                data: [70, 30], // Dữ liệu tương ứng với Pass và Fail
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.6)', // Màu cho Pass
+                    'rgba(255, 99, 132, 0.6)'  // Màu cho Fail
+                ],
+                borderColor: 'white', // Màu viền
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                },
+                title: {
+                    display: true,
+                    text: 'Cơ cấu học sinh Pass và Fail'
+                },
+                datalabels: {
+                    color: 'white', // Màu chữ
+                    formatter: (value, context) => {
+                        const total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                        const percentage = ((value / total) * 100).toFixed(0) + '%';
+                        return percentage; // Hiển thị phần trăm
+                    }
+                }
+            }
+        }
+    });
+</script>
