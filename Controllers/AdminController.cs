@@ -415,7 +415,7 @@ namespace Proj3.Controllers
             }
             return RedirectToAction("admin_instructor");
         }
-
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> adminstudent()
         {
@@ -423,6 +423,7 @@ namespace Proj3.Controllers
             return View(customerInformation);
         }
 
+        [Authorize]
         public ActionResult admin()
         {
             return View();
