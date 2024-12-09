@@ -1,57 +1,42 @@
 @{
     Layout = "~/Views/Shared/_layoutadmin.cshtml";
 }
+<br /><br /><br />
 <div class="container-fluid">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4"></h5>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4">Thêm Sinh Viên</h5>
             <div class="card">
-              <div class="card-body p-4">
-                <h1>Student Add</h1>
-                <div class="container mt-5 px-2">
-    
-                  <div class="mb-2 d-flex justify-content-between align-items-center">
-                      
-                     
-                      
-                      
-                      
-                  </div>
-                  <div class="table-responsive">
-                  <table class="table table-responsive table-borderless">
-                      
-                    
-                <tbody>
-                  <tr>
-                    
-                    
-                    <div class="col-md-12"><label class="labels">Name</label><input type="text" class="form-control" placeholder="Enter name" value=""></div>
-                    <div class="col-md-12"><label class="labels">Date of birth</label><input type="text" class="form-control" placeholder="Enter date of birth" value=""></div>
-                    <div class="col-md-12"><label class="labels">ID</label><input type="text" class="form-control" placeholder="Enter ID" value=""></div>
-                    <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="Enter email" value=""></div>
-                    <div class="col-md-12"><label class="labels">Image</label><input type="file" class="form-control" placeholder="enter phone number" value=""></div>
-                     <div class="text-end">
-                    <a href="#" class="btn btn-outline-success m-1">Save</a>
+                <div class="card-body p-4">
+                    <h1>Thêm Sinh Viên</h1>
+                    <div class="container mt-5 px-2">
+                        <form asp-action="admin_student_add" method="post" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="FullName" class="form-label">Họ và Tên</label>
+                                <input type="text" id="FullName" name="FullName" class="form-control" placeholder="Nhập họ và tên" required>
+                            </div>
+                           
+                            
+                            <div class="mb-3">
+                                <label for="Email" class="form-label">Email</label>
+                                <input type="email" id="Email" name="Email" class="form-control" placeholder="Nhập email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Phone Number" class="form-label"Phone Number</label>
+                                <input type="phone number" id="phone number" name="phone number" class="form-control" placeholder="Enter Phone Number" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="Image" class="form-label">Ảnh</label>
+                                <input type="file" id="Image" name="Image" class="form-control">
+                            </div>
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-success m-1">Lưu</button>
+                                <a asp-action="admin_student" class="btn btn-outline-secondary m-1">Quay lại</a>
+                            </div>
+                        </form>
                     </div>
-                  </tr>
-                  
-                 
-                  
-                  
-                  
-                  
-                </tbody>
-              </table>
-               <div class="text-end">
-                                <a a asp-area="" asp-controller="Admin" asp-action="adminstudent" class="btn btn-right btn-outline-secondary m-1">Back</a>
-              </div>
                 </div>
-                  
-              </div>
-              </div>
             </div>
-            
-          </div>
         </div>
-          
-      </div>
+    </div>
+</div>

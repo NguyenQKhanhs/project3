@@ -14,6 +14,7 @@ namespace Project3.Models
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
+        public string? ImageLink { get; set; }
 
         // Relationships
         public ICollection<Order> Orders { get; set; }

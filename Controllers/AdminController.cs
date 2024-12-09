@@ -416,11 +416,64 @@ namespace Proj3.Controllers
             return RedirectToAction("admin_instructor");
         }
 
-        [HttpGet]
+        
         public async Task<IActionResult> adminstudent()
         {
             var customerInformation = await _context.CustomerInformations.ToListAsync();
             return View(customerInformation);
+        }
+
+        public ActionResult admin_student_add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> admin_student_add(CustomerInformation customerInformation, IFormFile Image)
+        {
+            if (Image != null && Image.Length > 0)
+            {
+                // Đọc file ảnh thành byte[]
+                using var memoryStream = new MemoryStream();
+                await Image.CopyToAsync(memoryStream);
+                var fileBytes = memoryStream.ToArray();
+                var base64Image = Convert.ToBase64String(fileBytes);
+
+                // Upload ảnh lên Imgur
+                var client = new RestClient("https://api.imgur.com/3/upload");
+                var request = new RestRequest("/", Method.Post);
+                request.AddHeader("Authorization", $"Client-ID {_clientId}"); // Thay _clientId bằng Client ID của bạn
+                request.AddParameter("image", base64Image);
+
+                var response = await client.ExecuteAsync(request);
+
+                if (response.IsSuccessful)
+                {
+                    // Parse JSON response để lấy link ảnh
+                    var imgurResponse = System.Text.Json.JsonDocument.Parse(response.Content);
+                    if (imgurResponse.RootElement.TryGetProperty("data", out var dataElement) &&
+                        dataElement.TryGetProperty("link", out var linkElement))
+                    {
+                        customerInformation.ImageLink = linkElement.GetString(); // Lưu URL ảnh vào customerInformation
+                    }
+                    else
+                    {
+                        ViewBag.Message = "Không lấy được đường dẫn ảnh từ Imgur.";
+                        return View(customerInformation);
+                    }
+                }
+                else
+                {
+                    ViewBag.Message = "Upload ảnh thất bại! Đáp ứng từ Imgur không thành công.";
+                    return View(customerInformation);
+                }
+            }
+
+            // Xử lý lưu dữ liệu sinh viên
+            customerInformation.CreatedAt = DateTime.UtcNow; // Đặt ngày tạo
+            _context.CustomerInformations.Add(customerInformation); // Thêm sinh viên vào DbContext
+            await _context.SaveChangesAsync(); // Lưu thay đổi vào cơ sở dữ liệu
+            return RedirectToAction("admin_student"); // Chuyển hướng về danh sách sinh viên
         }
 
         public ActionResult admin()
