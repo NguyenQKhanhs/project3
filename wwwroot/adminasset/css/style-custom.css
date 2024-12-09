@@ -162,3 +162,20 @@ label.labels {
 .img-course {
   border-radius: 10px !important;
 }
+
+.sidebar-item .sidebar-link span{
+    transition: all 0.3s!important; /* Thêm hiệu ứng chuyển động */
+}
+.sidebar-item:hover .sidebar-link span {
+  color: #ec9f42!important;
+}
+
+.sidebar-item.active {
+  color: white; /* Màu chữ khi mục được chọn */
+}
+
+.sidebar-item.active .sidebar-link span{
+  color: #ec9f42!important; /* Màu chữ của liên kết khi mục được chọn */
+  font-weight: bold; /* Để làm nổi bật liên kết */
+}
+

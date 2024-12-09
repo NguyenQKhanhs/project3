@@ -415,8 +415,8 @@ namespace Proj3.Controllers
             }
             return RedirectToAction("admin_instructor");
         }
-
-        
+        [Authorize]
+        [HttpGet]
         public async Task<IActionResult> adminstudent()
         {
             var customerInformation = await _context.CustomerInformations.ToListAsync();
@@ -476,6 +476,7 @@ namespace Proj3.Controllers
             return RedirectToAction("admin_student"); // Chuyển hướng về danh sách sinh viên
         }
 
+        [Authorize]
         public ActionResult admin()
         {
             return View();
