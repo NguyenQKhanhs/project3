@@ -1,3 +1,5 @@
+@model List<Project3.Models.Feedbacks>
+
 @{
     Layout = "~/Views/Shared/_layoutadmin.cshtml";
 }
@@ -5,7 +7,7 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4"></h5>
+            <h5 class="card-title fw-semibold mb-4">Feedback Management</h5>
             <div class="card">
                 <div class="card-body p-4">
                     <div class="container mt-5 px-2">
@@ -14,57 +16,39 @@
                                 <input type="text" class="form-control" placeholder="Search">
                                 <button type="button" class="btn btn-primary btn-search ms-2">Search</button>
                             </div>
-                            
-
-                        </div>
-                        <div class="mb-2 d-flex justify-content-between align-items-center">
                         </div>
                         <div class="table-responsive">
                             <table class="table table-responsive table-borderless">
-
                                 <thead>
                                     <tr class="bg-light">
-
-
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Subject</th>
                                         <th>Message</th>
-
-                                        
-                                        <th scope="col" width="10%"></th>
+                                        <th scope="col" width="10%">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-
-
-                                        <td>Trần Văn B</td>
-                                        <td>tranvanb456@gmail.com</td>
-                                        <td>Error</td>
-                                        <td style="text-overflow: ellipsis; max-width: 100px; white-space: nowrap;  overflow: hidden;">
-                                            An unexpected issue occurred. Please try again later or contact support if the problem persists.
-                                        </td>
-
-                                        <td><a a asp-area="" asp-controller="Admin" asp-action="admin_feedback_view" class="btn btn-outline-primary m-1">View</a></td>
-                                    </tr>
-
-
-
-
-
-
+                                    @foreach (var feedback in Model)
+                                    {
+                                        <tr>
+                                            <td>@feedback.Name</td>
+                                            <td>@feedback.Email</td>
+                                            <td>@feedback.Subject</td>
+                                            <td style="text-overflow: ellipsis; max-width: 200px; white-space: nowrap; overflow: hidden;">
+                                                @feedback.Message
+                                            </td>
+                                            <td>
+                                                <a asp-controller="Admin" asp-action="admin_feedback_view" asp-route-id="@feedback.FeedbackId" class="btn btn-outline-primary m-1">View</a>
+                                            </td>
+                                        </tr>
+                                    }
                                 </tbody>
                             </table>
-
                         </div>
-
                     </div>
-
                 </div>
             </div>
-
         </div>
     </div>
-
 </div>

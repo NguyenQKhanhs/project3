@@ -17,6 +17,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Class> Classes { get; set; }
     public DbSet<Enrollment> Enrollments { get; set; }
     public DbSet<Instructor> Instructors { get; set; }
+    public DbSet<Feedbacks> Feedbacks { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

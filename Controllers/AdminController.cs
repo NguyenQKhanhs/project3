@@ -51,14 +51,14 @@ namespace Proj3.Controllers
         [HttpPost]
         public async Task<ActionResult> admin_account_add(Account account)
         {
-            
+
             {
                 account.CreatedAt = DateTime.UtcNow;
                 await _context.Accounts.AddAsync(account); // Use async add
                 await _context.SaveChangesAsync();
                 return RedirectToAction("admin_account");
             }
-            
+
         }
 
         public IActionResult login()
@@ -82,7 +82,7 @@ namespace Proj3.Controllers
         [HttpPost]
         public async Task<ActionResult> admin_account_edit(Account account)
         {
-           
+
             {
                 var existingAccount = await _context.Accounts.FindAsync(account.AccountId);
                 if (existingAccount == null)
@@ -98,7 +98,7 @@ namespace Proj3.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("admin_account");
             }
-            
+
         }
 
         [Authorize]
@@ -174,7 +174,7 @@ namespace Proj3.Controllers
         [HttpPost]
         public async Task<ActionResult> admin_course_edit(Course course, IFormFile image)
         {
-            
+
             {
                 var existingCourse = await _context.Courses.FindAsync(course.CourseId);
                 if (existingCourse == null)
@@ -224,7 +224,7 @@ namespace Proj3.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("admin_course");
             }
-            
+
         }
 
         [Authorize]
@@ -277,17 +277,17 @@ namespace Proj3.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> admin_class_add(Class newClass)
         {
-           
-            
-                newClass.CreatedAt = DateTime.UtcNow; // Gán thời gian tạo
-                await _context.Classes.AddAsync(newClass); // Thêm lớp vào cơ sở dữ liệu
-                await _context.SaveChangesAsync(); // Lưu thay đổi
-                return RedirectToAction("admin_class"); // Chuyển hướng đến danh sách lớp
-            
 
-            
+
+            newClass.CreatedAt = DateTime.UtcNow; // Gán thời gian tạo
+            await _context.Classes.AddAsync(newClass); // Thêm lớp vào cơ sở dữ liệu
+            await _context.SaveChangesAsync(); // Lưu thay đổi
+            return RedirectToAction("admin_class"); // Chuyển hướng đến danh sách lớp
+
+
+
         }
-    
+
 
 
         [Authorize]
@@ -428,5 +428,46 @@ namespace Proj3.Controllers
         {
             return View();
         }
+
+        [Authorize]
+        public async Task<IActionResult> admin_feedback()
+        {
+            var feedbacks = await _context.Feedbacks
+            .FromSqlRaw("SELECT * FROM Feedbacks")
+            .ToListAsync();
+            return View(feedbacks);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> admin_feedback_view(int id)
+        {
+            var feedback = await _context.Feedbacks.FindAsync(id);
+            if (feedback == null)
+            {
+                return NotFound(); // Nếu không tìm thấy phản hồi
+            }
+            return View(feedback); // Trả về view với dữ liệu phản hồi
+        }
+
+        // [HttpPost]
+        // public async Task<IActionResult> submit_feedback([FromForm] Feedbacks feedback)
+        // {
+        //     if (ModelState.IsValid)
+        //     {
+        //         feedback.CreatedAt = DateTime.UtcNow;
+
+        //         // Lưu phản hồi vào cơ sở dữ liệu
+        //         await _context.Feedbacks.AddAsync(feedback);
+        //         await _context.SaveChangesAsync();
+
+        //         // Giữ người dùng lại trên trang với thông báo thành công
+        //         ViewBag.Message = "Thank you for your feedback!";
+        //         return View("Contact"); // Hiển thị lại trang contact
+        //     }
+
+        //     // Nếu có lỗi, vẫn giữ người dùng ở lại trang với thông báo lỗi
+        //     return View("Contact");
+        // }
+
     }
 }
