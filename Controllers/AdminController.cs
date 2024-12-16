@@ -980,7 +980,19 @@ namespace Proj3.Controllers
             }
 
             // Tạo mảng tháng
-            var months = new[] { "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12" };
+            var months = new[] { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+
+            // Lấy top 5 học sinh có điểm cao nhất
+            var topStudents = _context.CustomerInformations
+                .Where(c => c.Mark != null)
+                .OrderByDescending(c => c.Mark)
+                .Take(5)
+                .Select(c => new StudentViewModel
+                {
+                    Name = c.FullName,
+                    Score = c.Mark
+                })
+                .ToList();
 
             // Tạo mô hình để truyền dữ liệu vào view
             var viewModel = new
@@ -989,7 +1001,8 @@ namespace Proj3.Controllers
                 PassCounts = passCounts,
                 FailCounts = failCounts,
                 NewRegistrations = newRegistrations,
-                Account = account // Thêm thông tin tài khoản
+                Account = account, // Thêm thông tin tài khoản
+                TopStudents = topStudents // Thêm top 5 học sinh
             };
 
             return View(viewModel); // Trả về view cùng với dữ liệu

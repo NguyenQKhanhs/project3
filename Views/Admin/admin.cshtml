@@ -1,57 +1,68 @@
-@model dynamic // Or you can create a specific ViewModel
+@model dynamic
 
 @{
     Layout = "~/Views/Shared/_layoutadmin.cshtml";
 }
 
 <br>
-<br>
-<br>
 <div class="container-fluid">
-    <div class="card">
-        <div class="card-body" style="overflow: hidden;">
-            <h5 class="card-title fw-semibold mb-4"></h5>
-            <div class="row">
-                <!-- Display user information -->
-                <div class="col-md-4 col-12 mb-3">
-                    <div class="card">
-                        <div class="card-body p-4">
-                            @if (Model.Account != null)
+    <div class="card my-3">
+        <div class="card-body">
+            <!-- Hàng 1: Thông tin người dùng và biểu đồ -->
+            <div class="row g-3 mb-2" style="height: 500px;">
+                <!-- Thông tin người dùng -->
+                <div class="col-md-4 h-100">
+                    <div class="card h-100" style="">
+                        <div class="card-body h-100 bg-white rounded-3">
+                            <br>
+                            <h5 style="color: #222; font-size: 30px" class="mt-2" >Top 5 Students with Highest Scores 🎉</h5>
+                            @if (Model.TopStudents != null && Model.TopStudents.Count > 0)
                             {
-                                <h3 style="color:white">Name: @Model.Account.Username</h3>
-                                <br />
-                                <h5 style="color:white">Email: @Model.Account.Email</h5>
-                                <br />
-                                <h5 style="color:white">Full Name: @Model.Account.FullName</h5>
-                                <br />
-                                <h5 style="color:white">Creation Date: @Model.Account.CreatedAt.ToString("dd/MM/yyyy")</h5>
+                            <ul class="list-group mt-3">
+                                @foreach (var student in Model.TopStudents)
+                                {
+                                <li class="list-group-item">
+                                    <h5 style="color: #222" class="mb-1">@student.Name</h5>
+                                    <small style="color: #555">Score: @student.Score</small>
+                                </li>
+                                }
+                            </ul>
                             }
                             else
                             {
-                                <h5 style="color:white">Account information not found.</h5>
+                            <h5 class="text-dark mt-3">No student data available.</h5>
                             }
                         </div>
                     </div>
                 </div>
-                <!-- Grouped bar chart -->
-                <div class="col-md-8 col-12 mb-3">
-                    <div style="border: 2px solid white; border-radius: 8px; padding: 10px;">
-                        <canvas id="myChart" style="max-width: 100%; height: 400px;"></canvas>
+
+                <!-- Biểu đồ -->
+                <div class="col-md-8 h-100">
+                    <div class="card h-100">
+                        <div class="card-body h-100 bg-white rounded-3 p-3">
+                            <canvas id="myChart" style="width: 100%; height: 100%"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Line chart and pie chart side by side -->
-            <div class="row" style="margin-top: 30px;">
-                <!-- Line chart -->
-                <div class="col-md-8 col-12 mb-3">
-                    <div style="border: 2px solid white; border-radius: 8px; padding: 10px;">
-                        <canvas id="lineChart" style="max-width: 100%; height: 470px;"></canvas>
+
+            <!-- Hàng 2: Biểu đồ nhóm và biểu đồ tròn -->
+            <div class="row g-3 mt-3" style="height: 500px;">
+                <!-- Biểu đồ nhóm -->
+                <div class="col-md-8 h-100">
+                    <div class="card h-100 ">
+                        <div class="card-body h-100 bg-white rounded-3 p-3">
+                            <canvas id="lineChart" style="width: 100%;height: 100%"></canvas>
+                        </div>
                     </div>
                 </div>
-                <!-- Pie chart -->
-                <div class="col-md-4 col-12 mb-3">
-                    <div style="border: 2px solid white; border-radius: 8px; padding: 10px;">
-                        <canvas id="pieChart" style="max-width: 100%; height: 400px;"></canvas>
+
+                <!-- Biểu đồ tròn -->
+                <div class="col-md-4 h-100">
+                    <div class="card h-100" style="">
+                        <div class="card-body h-100 bg-white rounded-3 p-3">
+                            <canvas id="pieChart" style="width: 100%;height: 100%"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>

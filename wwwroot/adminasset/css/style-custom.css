@@ -1,5 +1,5 @@
 .body-page-custom {
-  background-color: #dce7f2 !important ;
+  background-color: #f1f5f9 !important ;
   min-height: 100vh;
 }
 .sidebar-nav ul .sidebar-item .sidebar-link:hover {
@@ -18,7 +18,7 @@ span.hide-menu {
 }
 
 .card {
-  background-color: #020818 !important;
+  background-color: #f1f5f9 !important;
 }
 
 .sidebar-nav ul .sidebar-item.selected > .sidebar-link.active,
@@ -178,3 +178,17 @@ label.labels {
   font-weight: bold; /* Để làm nổi bật liên kết */
 }
 
+.bg-color-#fff{
+    background-color: #fff !important;
+}
+*{
+  color: #222;
+}
+.custom-bg{
+  background-color:#ffffff ;
+  border-radius: 15px;
+}
+
+td, label{
+  color: #222!important;
+}
