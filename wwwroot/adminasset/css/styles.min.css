@@ -748,7 +748,7 @@ progress {
 .container-sm {
   --bs-gutter-x: 30px;
   --bs-gutter-y: 0;
-  width: 100%;
+  width: 90%;
   padding-right: calc(var(--bs-gutter-x) * 0.5);
   padding-left: calc(var(--bs-gutter-x) * 0.5);
   margin-right: auto;
@@ -3789,6 +3789,12 @@ textarea.form-control-lg {
   --bs-btn-disabled-bg: transparent;
   --bs-btn-disabled-border-color: #ffa12e;
   --bs-gradient: none;
+}
+
+.btn-view{
+  position: absolute; 
+  bottom: 2%; 
+  right: 9%;
 }
 
 .btn-outline-secondary {
@@ -9864,8 +9870,9 @@ textarea.form-control-lg {
 }
 
 .py-5 {
-  padding-top: 3rem !important;
+  padding-top: 10rem !important;
   padding-bottom: 3rem !important;
+  width: 60%;
 }
 
 .py-6 {

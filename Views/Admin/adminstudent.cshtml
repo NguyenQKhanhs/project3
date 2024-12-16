@@ -39,7 +39,7 @@
 
                                         <th>Mark</th>
                                         <th>Status</th>
-                                        <th>Schedule</th>
+                                        <th>Course</th>
 
                                         <th scope="col" width="10%">Actions</th>
                                     </tr>
@@ -56,7 +56,7 @@
 
                                                 <td>@item.Mark?.ToString("F2")</td>
                                                 <td>@item.Status</td>
-                                                <td>@item.Schedule  </td>
+                                                <td>@item.Course?.Name</td>
 
                                                 <td class="d-flex align-items-center justify-content-between td-action">
                                                     @await Html.PartialAsync("_PopupConfirm")

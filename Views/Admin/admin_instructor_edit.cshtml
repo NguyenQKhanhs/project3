@@ -7,79 +7,77 @@
 <br />
 <br />
 <br />
-
 <div class="container-fluid">
-    <div class="card" style="transform: scale(1.1)">
+    <div class="card">
         <div class="card-body">
-            <h1 class="text-center text-light">Edit Instructor</h1>
-            <div class="container mt-5 px-2">
-                <div class="table-responsive">
-                    <form asp-action="admin_instructor_edit" method="post" enctype="multipart/form-data">
-                        <!-- ID Ẩn -->
-                        <input type="hidden" asp-for="InstructorId" />
+            <h5 class="card-title fw-semibold mb-4"></h5>
+            <div class="card">
+                <div class="card-body p-4">
+                    <h1 class="text-center text-light">Edit Instructor</h1>
+                    <div class="container mt-1 px-2">
+                        <form asp-action="admin_instructor_edit" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="InstructorId" value="@Model.InstructorId" />
 
-                        <!-- Tên -->
-                        <div class="col-md-8 mx-auto">
-                            <label asp-for="Name" class="form-label text-light" style="font-size: 18px">Name</label>
-                            <input asp-for="Name" class="form-control w-100" style="height:50px" required />
-                            <span asp-validation-for="Name" class="text-danger"></span>
-                        </div>
-
-                        <!-- Giới tính -->
-                        <div class="col-md-8 mx-auto mt-3">
-                            <label class="form-label text-light" style="font-size: 18px">Gender</label>
-                            <div>
-                                <input type="radio" asp-for="Gender" value="Male" id="genderMale" />
-                                <label for="genderMale">Male</label>
+                            <div class="col-md-8 mx-auto">
+                                <label for="Name" class="labels">Name</label>
+                                <input type="text" id="Name" name="Name" class="form-control w-100" style="height:50px"
+                                    placeholder="Enter name" value="@Model.Name" required>
                             </div>
-                            <div>
-                                <input type="radio" asp-for="Gender" value="Female" id="genderFemale" />
-                                <label for="genderFemale">Female</label>
+
+                            <div class="col-md-8 mx-auto mt-3">
+                                <label class="form-label text-light" style="font-size: 18px">Gender</label>
+                                <div>
+                                    <input type="radio" asp-for="Gender" value="Male" id="genderMale" />
+                                    <label for="genderMale">Male</label>
+                                </div>
+                                <div>
+                                    <input type="radio" asp-for="Gender" value="Female" id="genderFemale" />
+                                    <label for="genderFemale">Female</label>
+                                </div>
+                                <span asp-validation-for="Gender" class="text-danger"></span>
                             </div>
-                            <div>
-                                <input type="radio" asp-for="Gender" value="Other" id="genderOther" />
-                                <label for="genderOther">Other</label>
+
+                            <div class="col-md-8 mx-auto">
+                                <label for="Bio" class="labels">Bio</label>
+                                <textarea id="Bio" name="Bio" class="form-control w-100" style="height:50px"
+                                    placeholder="Enter bio" required>@Model.Bio</textarea>
                             </div>
-                            <span asp-validation-for="Gender" class="text-danger"></span>
-                        </div>
 
-                        <!-- Tiểu sử -->
-                        <div class="col-md-8 mx-auto mt-3">
-                            <label asp-for="Bio" class="form-label text-light" style="font-size: 18px">Bio</label>
-                            <textarea asp-for="Bio" class="form-control w-100" required></textarea>
-                            <span asp-validation-for="Bio" class="text-danger"></span>
-                        </div>
-
-                        <!-- Số điện thoại -->
-                        <div class="col-md-8 mx-auto mt-3">
-                            <label asp-for="PhoneNumber" class="form-label text-light" style="font-size: 18px">Phone Number</label>
-                            <input asp-for="PhoneNumber" type="text" class="form-control w-100" style="height:50px" required />
-                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                        </div>
-
-                        <!-- Email -->
-                        <div class="col-md-8 mx-auto mt-3">
-                            <label asp-for="Email" class="form-label text-light" style="font-size: 18px">Email</label>
-                            <input asp-for="Email" type="email" class="form-control w-100" style="height:50px" required />
-                            <span asp-validation-for="Email" class="text-danger"></span>
-                        </div>
-
-                        <!-- Ảnh -->
-                        <div class="col-md-8 mx-auto mt-3">
-                            <label class="form-label text-light" style="font-size: 18px">Upload Image</label>
-                            <input type="file" name="Image" class="form-control w-100"  />
-                            <div class="mt-2 text-light" style="font-size: 18px">
-                                Current Image
-                                <img src="@Model.ImageLink" class="m-3" alt="Current Image" style="height: 205px; border: 1px solid #fff" />
+                            <div class="col-md-8 mx-auto">
+                                <label for="PhoneNumber" class="labels">Phone Number</label>
+                                <input type="text" id="PhoneNumber" name="PhoneNumber" class="form-control w-100"
+                                    style="height:50px" placeholder="Enter phone number" value="@Model.PhoneNumber"
+                                    required>
                             </div>
-                        </div>
 
-                        <!-- Nút cập nhật -->
-                        <div class="mt-4 col-md-8 mx-auto d-flex justify-content-end" >
-                            <button type="submit" class="btn btn-primary m-1">Update Instructor</button>
-                            <a asp-action="admin_instructor" class="btn btn-secondary m-1">Cancel</a>
-                        </div>
-                    </form>
+                            <div class="col-md-8 mx-auto">
+                                <label for="Email" class="labels">Email</label>
+                                <input type="email" id="Email" name="Email" class="form-control w-100"
+                                    style="height:50px" placeholder="Enter email" value="@Model.Email" required>
+                            </div>
+
+                            <div class="col-md-8 mx-auto">
+                                <label class="labels">Upload Image</label>
+                                <input type="file" name="Image" class="form-control w-100" />
+                                <div class="mt-2 text-light" style="font-size: 18px">
+                                    Current Image
+                                    <img src="@Model.ImageLink" class="m-3" alt="Current Image"
+                                        style="height: 205px; border: 1px solid #fff" />
+                                </div>
+                            </div>
+
+                            <br /><br />
+                            <div class="text-end col-sm-8 mx-auto">
+                                <button type="submit" class="btn btn-outline-success m-1">Save</button>
+                                <a asp-action="admin_instructor" class="btn btn-outline-secondary m-1">Back</a>
+                            </div>
+
+                            @if (ViewBag.Message != null)
+                            {
+                                <p class="text-danger">@ViewBag.Message</p>
+                            }
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
