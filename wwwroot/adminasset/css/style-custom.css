@@ -189,6 +189,19 @@ label.labels {
   border-radius: 15px;
 }
 
-td, label{
+td, label, input{
   color: #222!important;
 }
+input, select, textarea{
+  border:1px solid #222!important;
+}
+
+h1,h3{
+  color: #222!important;
+  margin-top: 10px;
+}
+
+h6.text-muted{
+    color: #222!important;
+}
+

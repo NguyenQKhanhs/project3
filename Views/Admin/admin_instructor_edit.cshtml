@@ -4,17 +4,14 @@
     Layout = "~/Views/Shared/_layoutadmin.cshtml";
 }
 
-<br />
-<br />
-<br />
 <div class="container-fluid">
     <div class="card">
         <div class="card-body">
             <h5 class="card-title fw-semibold mb-4"></h5>
             <div class="card">
-                <div class="card-body p-4">
-                    <h1 class="text-center text-light">Edit Instructor</h1>
-                    <div class="container mt-1 px-2">
+                <div class="card-body m-2 custom-bg">
+                    <h1 class="text-center ">Edit Instructor</h1>
+                    <div class="container mt-5 px-2">
                         <form asp-action="admin_instructor_edit" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="InstructorId" value="@Model.InstructorId" />
 
@@ -25,7 +22,7 @@
                             </div>
 
                             <div class="col-md-8 mx-auto mt-3">
-                                <label class="form-label text-light" style="font-size: 18px">Gender</label>
+                                <label class="form-label " style="font-size: 18px">Gender</label>
                                 <div>
                                     <input type="radio" asp-for="Gender" value="Male" id="genderMale" />
                                     <label for="genderMale">Male</label>
@@ -59,7 +56,7 @@
                             <div class="col-md-8 mx-auto">
                                 <label class="labels">Upload Image</label>
                                 <input type="file" name="Image" class="form-control w-100" />
-                                <div class="mt-2 text-light" style="font-size: 18px">
+                                <div class="mt-2 " style="font-size: 18px; color: #222">
                                     Current Image
                                     <img src="@Model.ImageLink" class="m-3" alt="Current Image"
                                         style="height: 205px; border: 1px solid #fff" />
