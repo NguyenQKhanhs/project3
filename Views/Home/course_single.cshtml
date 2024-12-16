@@ -1,0 +1,102 @@
+﻿@model Project3.Models.Course
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var items = Model.Content.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
+}
+
+<!--====== HERO PART START ======-->
+<style>
+    .btn-orange {
+        background-color: orange; /* Màu nền cam */
+        color: white; /* Màu chữ trắng */
+        border: none; /* Không viền */
+    }
+
+        .btn-orange:hover {
+            background-color: darkorange; /* Màu nền khi di chuột vào nút */
+            color: white; /* Màu chữ khi di chuột vào nút */
+        }
+</style>
+<section class="page-banner pt-200 pb-100 bg_cover" style="background-image: url('@Url.Content("~/homeasset/images/hero-bg.jpg")')">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="banner-content text-center">
+                    <h1 class="text-white">Course Details</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Course Details</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--====== HERO PART END ======-->
+<!--====== COURSE SINGLE PART START ======-->
+<section id="course-single" class="course-area pt-140">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="single-course-wrapper">
+                    <div class="course-title mb-30">
+                        <h3 class="mb-20">@Model.Name</h3> <!-- Tên khóa học -->
+                    </div>
+                    <div class="">
+                        <img src="@Model.ImageUrl" alt="@Model.Name" width="600px"> <!-- Hình ảnh khóa học -->
+                    </div>
+                    <div class="course-description pb-20 border-bottom">
+                        <h3 class="mb-20">DESCRIPTION</h3>
+                        <p class="mb-30">@Model.Description</p> <!-- Mô tả chi tiết -->
+                    </div>
+                    <div class="course-content pb-20 border-bottom">
+                        <h3 class="mb-20">Course Content</h3>
+                        <ul style="font-size:medium;">
+                            @foreach (var item in items)
+                            {
+                                <li>+ @Html.Raw(item.Trim())</li> <!-- In nội dung khóa học -->
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="right-sidebar">
+                    <div class="course-info mb-50">
+                        <h3 class="mb-20 text-center">Course Information</h3>
+                        <ul class="mb-30">
+                            <li class="d-flex justify-content-between">
+                                <span>Starts:</span>
+                                <span class="text-right">@Model.StartDate.ToString("dd-MM-yyyy")</span> <!-- Ngày bắt đầu -->
+                            </li>
+                            <li class="d-flex justify-content-between">
+                                <span>Duration:</span>
+                                <span class="text-right">@Model.Duration Week</span> <!-- Thời gian học -->
+                            </li>
+                            <li class="d-flex justify-content-between">
+                                <span>Study Level:</span>
+                                <span class="text-right">@Model.StudyLevel</span> <!-- Cấp độ học -->
+                            </li>
+                            <li class="d-flex justify-content-between">
+                                <span>Exam Date:</span>
+                                <span class="text-right">
+                                    @(Model.ExamDate.HasValue ? Model.ExamDate.Value.ToString("dd-MM-yyyy") : "N/A")
+                                </span>
+                            </li>
+                            <li class="d-flex justify-content-between">
+                                <a href="@Url.Action("Registration", "Home", new { courseId = Model.CourseId })" class="btn btn-orange" style="margin:0 35%">
+                                    Registration
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--====== COURSE SINGLE PART END ======-->

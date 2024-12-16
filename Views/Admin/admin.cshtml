@@ -1,0 +1,190 @@
+@model dynamic // Or you can create a specific ViewModel
+
+@{
+    Layout = "~/Views/Shared/_layoutadmin.cshtml";
+}
+
+<br>
+<br>
+<br>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body" style="overflow: hidden;">
+            <h5 class="card-title fw-semibold mb-4"></h5>
+            <div class="row">
+                <!-- Display user information -->
+                <div class="col-md-4 col-12 mb-3">
+                    <div class="card">
+                        <div class="card-body p-4">
+                            @if (Model.Account != null)
+                            {
+                                <h3 style="color:white">Name: @Model.Account.Username</h3>
+                                <br />
+                                <h5 style="color:white">Email: @Model.Account.Email</h5>
+                                <br />
+                                <h5 style="color:white">Full Name: @Model.Account.FullName</h5>
+                                <br />
+                                <h5 style="color:white">Creation Date: @Model.Account.CreatedAt.ToString("dd/MM/yyyy")</h5>
+                            }
+                            else
+                            {
+                                <h5 style="color:white">Account information not found.</h5>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <!-- Grouped bar chart -->
+                <div class="col-md-8 col-12 mb-3">
+                    <div style="border: 2px solid white; border-radius: 8px; padding: 10px;">
+                        <canvas id="myChart" style="max-width: 100%; height: 400px;"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!-- Line chart and pie chart side by side -->
+            <div class="row" style="margin-top: 30px;">
+                <!-- Line chart -->
+                <div class="col-md-8 col-12 mb-3">
+                    <div style="border: 2px solid white; border-radius: 8px; padding: 10px;">
+                        <canvas id="lineChart" style="max-width: 100%; height: 470px;"></canvas>
+                    </div>
+                </div>
+                <!-- Pie chart -->
+                <div class="col-md-4 col-12 mb-3">
+                    <div style="border: 2px solid white; border-radius: 8px; padding: 10px;">
+                        <canvas id="pieChart" style="max-width: 100%; height: 400px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script>
+    // Data from Controller
+    const months = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Months));
+    const passCounts = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.PassCounts));
+    const failCounts = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.FailCounts));
+    const newRegistrations = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.NewRegistrations)); // Data for the line chart
+
+    // Grouped bar chart
+    const ctxBar = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+            labels: months, // Month labels from data
+            datasets: [
+                {
+                    label: 'Pass',
+                    data: passCounts, // Pass count data
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Fail',
+                    data: failCounts, // Fail count data
+                    backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                },
+                title: {
+                    display: true,
+                    text: 'Number of Pass and Fail Students by Month'
+                }
+            },
+            scales: {
+                x: { stacked: false },
+                y: { beginAtZero: true }
+            }
+        }
+    });
+
+    // Line chart
+    const ctxLine = document.getElementById('lineChart').getContext('2d');
+    const lineChart = new Chart(ctxLine, {
+        type: 'line',
+        data: {
+            labels: months, // Month labels from data
+            datasets: [
+                {
+                    label: 'Number of New Registrations',
+                    data: newRegistrations, // Data for new registrations
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 2,
+                    tension: 0.4 // Smooth curve
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                },
+                title: {
+                    display: true,
+                    text: 'New Registrations Per Month'
+                }
+            },
+            scales: {
+                x: { beginAtZero: true },
+                y: { beginAtZero: true }
+            }
+        }
+    });
+
+    // Pie chart
+    const ctxPie = document.getElementById('pieChart').getContext('2d');
+    const pieChart = new Chart(ctxPie, {
+        type: 'pie',
+        data: {
+            labels: ['Pass', 'Fail'],
+            datasets: [{
+                label: 'Student Structure',
+                data: [passCounts.reduce((a, b) => a + b, 0), failCounts.reduce((a, b) => a + b, 0)], // Total data for Pass and Fail
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.6)', // Color for Pass
+                    'rgba(255, 99, 132, 0.6)'  // Color for Fail
+                ],
+                borderColor: 'white', // Border color
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                },
+                title: {
+                    display: true,
+                    text: 'Student Pass and Fail Structure'
+                },
+                datalabels: {
+                    color: 'white', // Text color
+                    formatter: (value, context) => {
+                        const total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                        const percentage = ((value / total) * 100).toFixed(0) + '%';
+                        return percentage; // Display percentage
+                    }
+                }
+            }
+        }
+    });
+</script>

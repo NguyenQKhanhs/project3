@@ -1,0 +1,82 @@
+@model Project3.Models.Class
+
+@{
+    Layout = "~/Views/Shared/_layoutadmin.cshtml";
+}
+<br /><br /><br />
+<div class="container mt-5">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-primary text-white text-center">
+            <h2 class="mb-0">Add Class</h2>
+        </div>
+        <div class="card-body">
+            <form asp-action="admin_class_add" method="post">
+                <div class="mb-3">
+                    <label asp-for="CourseId" class="form-label fw-bold">Course</label>
+                    <select asp-for="CourseId" class="form-select" asp-items="@(new SelectList(ViewBag.Courses, "CourseId", "Name"))">
+                        <option value="">Select a Course</option>
+                    </select>
+                    <span asp-validation-for="CourseId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="InstructorId" class="form-label fw-bold">Instructor</label>
+                    <select asp-for="InstructorId" class="form-select" asp-items="@(new SelectList(ViewBag.Instructors, "InstructorId", "Name"))">
+                        <option value="">Select an Instructor</option>
+                    </select>
+                    <span asp-validation-for="InstructorId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label fw-bold">Description</label>
+                    <textarea asp-for="Description" class="form-control" rows="4" placeholder="Enter class description..."></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-success px-4">Add Class</button>
+                    <a asp-action="admin_class" class="btn btn-secondary px-4">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+    }
+    .card {
+        max-width: 600px;
+        margin: auto;
+    }
+    .form-label {
+        font-size: 1rem;
+    }
+    .btn {
+        border-radius: 25px;
+    }
+    .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+    .btn-success:hover {
+        background-color: #218838;
+        border-color: #1e7e34;
+    }
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        border-color: #545b62;
+    }
+</style>

@@ -1,0 +1,88 @@
+@model Project3.Models.Class
+
+@{
+    Layout = "~/Views/Shared/_layoutadmin.cshtml";
+}
+
+<br />
+<br />
+<br />
+<style>
+    /* Đổi màu chữ của placeholder thành màu trắng */
+    input::placeholder {
+        color: white;
+        opacity: 1; /* Đảm bảo màu sắc hiển thị đầy đủ */
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <div class="card">
+                <div class="card-body p-4">
+                    <h1 style="color:white">Edit Class</h1>
+                    <div class="container mt-5 px-2">
+                        <form asp-action="admin_class_edit" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="ClassesId" value="@Model.ClassesId" />
+
+                            <div class="col-md-12">
+                                <label class="labels">Description</label>
+                                <input type="text" id="Description" name="Description" class="form-control" placeholder="Enter Class Description" value="@Model.Description" required>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="labels">Course</label>
+                                <select id="CourseId" name="CourseId" class="form-control" required>
+                                    <option value="">Choose Course</option>
+                                    @if (ViewBag.Courses is IEnumerable<Project3.Models.Course> courses && courses != null)
+                                    {
+                                        foreach (var course in courses)
+                                        {
+                                            <option value="@course.CourseId">@course.Name</option>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <option disabled>No courses available</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="CourseId" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="labels">Instructor</label>
+                                <select id="InstructorId" name="InstructorId" class="form-control" required>
+                                    <option value="">Choose Instructor</option>
+                                    @if (ViewBag.Instructors is IEnumerable<Project3.Models.Instructor> instructors && instructors != null)
+                                    {
+                                        foreach (var instructor in instructors)
+                                        {
+                                            <option value="@instructor.InstructorId">@instructor.Name</option>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <option disabled>No instructors available</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="InstructorId" class="text-danger"></span>
+                            </div>
+
+                            <br />
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-outline-success m-1">Save</button>
+                                <a asp-action="admin_class" class="btn btn-outline-secondary m-1">Back</a>
+                            </div>
+
+                            <!-- Hiển thị thông báo nếu có lỗi -->
+                            @if (ViewBag.Message != null)
+                            {
+                                <p class="text-danger">@ViewBag.Message</p>
+                            }
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
