@@ -198,10 +198,22 @@ input, select, textarea{
 
 h1,h3{
   color: #222!important;
-  margin-top: 10px;
+  margin-top: 20px!important;
+  margin-bottom: -1.5rem!important;
 }
 
 h6.text-muted{
     color: #222!important;
+}
+html{
+background-color: #f1f5f9 !important;
+}
+
+.margin-1-3rem{
+  margin: 1.3rem!important;
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="date"], select{
+  height: 50px!important;
 }
 
