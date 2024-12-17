@@ -23,31 +23,7 @@
                         <form asp-action="admin_class_edit" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="ClassesId" value="@Model.ClassesId" />
 
-                            <div class="col-md-12">
-                                <label class="labels">Description</label>
-                                <input type="text" id="Description" name="Description" class="form-control" placeholder="Enter Class Description" value="@Model.Description" required>
-                            </div>
-
-                            <div class="col-md-12">
-                                <label class="labels">Course</label>
-                                <select id="CourseId" name="CourseId" class="form-control" required>
-                                    <option value="">Choose Course</option>
-                                    @if (ViewBag.Courses is IEnumerable<Project3.Models.Course> courses && courses != null)
-                                    {
-                                        foreach (var course in courses)
-                                        {
-                                            <option value="@course.CourseId">@course.Name</option>
-                                        }
-                                    }
-                                    else
-                                    {
-                                        <option disabled>No courses available</option>
-                                    }
-                                </select>
-                                <span asp-validation-for="CourseId" class="text-danger"></span>
-                            </div>
-
-                            <div class="col-md-12">
+                                                        <div class="col-md-12">
                                 <label class="labels">Instructor</label>
                                 <select id="InstructorId" name="InstructorId" class="form-control" required>
                                     <option value="">Choose Instructor</option>
@@ -64,6 +40,13 @@
                                     }
                                 </select>
                                 <span asp-validation-for="InstructorId" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <label class="labels">Description</label>
+                                <textarea asp-for="Description" class="form-control w-100"
+                                    placeholder="Enter Course Description" rows="7" required></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
                             </div>
 
                             <br />
