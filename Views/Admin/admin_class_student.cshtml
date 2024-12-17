@@ -28,10 +28,7 @@
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Phone Number</th>
-                                        <th>Mark</th>
-                                        <th>Status</th>
-                                        <th>Schedule</th>
-                                        <th>Course</th>
+                                        
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -45,11 +42,8 @@
                                                 <td>@item.FullName</td>
                                                 <td>@item.Email</td>
                                                 <td>@item.PhoneNumber</td>
-                                                <td>@item.Mark?.ToString("F2")</td>
-                                                <td>@item.Status</td>
-                                                <td>@item.Schedule</td>
-                                                <td>@item.Course?.Name.Shorten(15)</td>
-                                                <td class="d-flex align-items-center justify-content-between td-action">
+                                                
+                                                <td class="">
                                                     <!-- Xóa -->
                                                     <form method="post" asp-action="admin_class_student_delete" asp-route-id="@item.CustomerInformationId" asp-route-classesId="@item.ClassesId" onsubmit="return confirm('Are you sure you want to remove the class ID for this customer?');">
                                                         <button type="submit" class="btn btn-outline-danger m-1">

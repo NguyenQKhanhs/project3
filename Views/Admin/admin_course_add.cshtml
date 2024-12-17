@@ -4,13 +4,7 @@
 @model Project3.Models.Course
 
 
-<style>
-    .cke_notification {
-        display: none !important;
-    }
 
-
-</style>
 <div class="container-fluid">
     <div class="card">
         <div class="card-body">
@@ -127,13 +121,3 @@
     </div>
 </div>
 <!-- CKEditor Integration -->
-<script src="https://cdn.ckeditor.com/4.22.0/standard/ckeditor.js"></script>
-<script>
-    // Replace textareas with CKEditor and disable the notification plugin
-    CKEDITOR.replace('Description', {
-        removePlugins: 'notification'
-    });
-    CKEDITOR.replace('Content', {
-        removePlugins: 'notification'
-    });
-</script>

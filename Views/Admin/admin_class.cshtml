@@ -46,7 +46,7 @@
                                             <tr>
                                                 <td style="border: 1px solid black;">@classItem.Course?.Name.Shorten(15)</td>
                                                 <td>@classItem.Instructor?.Name</td>
-                                                <td>@classItem.Description</td>
+                                                <td>@(classItem.Description.Length > 30 ? classItem.Description.Substring(0, 30) + "..." : classItem.Description)</td>
                                                 <td class="d-flex align-items-center justify-content-between td-action">
                                                     @await Html.PartialAsync("_PopupConfirm")
                                                     <form method="post" asp-action="admin_class_delete" asp-route-classId="@classItem.ClassesId" onsubmit="return showConfirmPopup(this);">

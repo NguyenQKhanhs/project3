@@ -894,31 +894,34 @@ namespace Proj3.Controllers
             {
                 ViewBag.Message = "Vui lòng chọn ca học!";
 
-                var courses = await _context.Courses.ToListAsync(); // Lấy danh sách khóa học nếu có lỗi
-                ViewBag.Courses = courses; // Gán danh sách khóa học cho ViewBag
+                var courses = await _context.Courses.ToListAsync(); // Get the list of courses
+                ViewBag.Courses = courses; // Assign the course list to ViewBag
 
-                return View(customerInformations); // Trả về form cùng thông báo lỗi
+                // Ensure that we keep the selected CourseId
+                ViewBag.SelectedCourseId = customerInformations.CourseId; // Pass the current CourseId back to the view
+
+                return View(customerInformations); // Return the view with the error message
             }
 
-            // Tìm thông tin hiện tại trong cơ sở dữ liệu
+            // Find the current information in the database
             var existingCustomer = await _context.CustomerInformations.FindAsync(customerInformations.CustomerInformationId);
             if (existingCustomer == null)
             {
-                return NotFound(); // Nếu không tìm thấy thông tin, trả về lỗi 404
+                return NotFound(); // Return a 404 error if the information is not found
             }
 
-            // Cập nhật các trường thông tin
+            // Update the fields with the new information
             existingCustomer.FullName = customerInformations.FullName;
             existingCustomer.Email = customerInformations.Email;
             existingCustomer.PhoneNumber = customerInformations.PhoneNumber;
-            existingCustomer.Mark = customerInformations.Mark; // Cập nhật điểm nếu có trong mô hình
-            existingCustomer.Status = customerInformations.Status; // Cập nhật trạng thái
-            existingCustomer.Schedule = customerInformations.Schedule; // Cập nhật lịch học
-            existingCustomer.CourseId = customerInformations.CourseId;
+            existingCustomer.Mark = customerInformations.Mark; // Update mark if provided in the model
+            existingCustomer.Status = customerInformations.Status; // Update status
+            existingCustomer.Schedule = customerInformations.Schedule; // Update schedule
+            
 
-            await _context.SaveChangesAsync(); // Lưu thay đổi vào cơ sở dữ liệu
+            await _context.SaveChangesAsync(); // Save changes to the database
 
-            return RedirectToAction("adminstudent"); // Chuyển hướng đến danh sách sinh viên
+            return RedirectToAction("adminstudent"); // Redirect to the student list
         }
 
 
