@@ -10,12 +10,12 @@
             <div class="card">
                 <div class="card-body margin-1-3rem custom-bg">
                     <div class="container mt-5 px-2">
-                        <div class="mb-1 d-flex justify-content-between align-items-center">
+                        <div class="mb-3 d-flex justify-content-between align-items-center">
                             <div class="d-flex">
                                 @using (Html.BeginForm("CourseSearch", "Admin", FormMethod.Get))
                                 {
                                     <div class="d-flex">
-                                        <input type="text" name="searchTerm" class="form-control" placeholder="Search" required />
+                                        <input type="text" name="searchTerm" class="form-control search" placeholder="Search" required />
                                         <button type="submit" class="btn btn-primary btn-search ms-2">Search</button>
                                     </div>
                                 }

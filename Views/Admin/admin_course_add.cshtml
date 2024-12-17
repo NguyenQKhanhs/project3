@@ -93,15 +93,16 @@
                                             </div>
                                             <!-- Nút gửi form -->
                                             <div class="mt-3">
-                                                <button type="submit" class="btn btn-primary">Add Course</button>
+                                                <div class="text-end d-flex justify-content-center align-items-center">
+                                                    <button type="submit" class="btn btn-primary">Add Course</button>
+                                                    <a asp-area="" asp-controller="Admin" asp-action="admin_course" class="btn-right btn btn-outline-secondary m-1">Back</a>
+                                                </div>
                                             </div>
                                         </tr>
                                     </tbody>
                                 </table>
                             </form>
-                            <div class="text-end">
-                                <a asp-area="" asp-controller="Admin" asp-action="admin_course" class="btn-right btn btn-outline-secondary m-1">Back</a>
-                            </div>
+
                             <!-- Thông báo lỗi/ảnh (nếu có) -->
                             @if (ViewBag.Message != null)
                             {
