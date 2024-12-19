@@ -34,7 +34,10 @@
                                         <tr>
                                             <td style="padding-top: 15px">@accounts.Username</td>
                                             <td style="padding-top: 15px">@accounts.FullName</td>
-                                            <td style="padding-top: 15px">@accounts.Password</td>
+
+                                            <td style="padding-top: 15px">
+                                                @(new string('*', 10)) @* 10 sao *@
+                                            </td>
                                             <td style="padding-top: 15px">@accounts.Email</td>
                                             <td class="d-flex align-items-center justify-content-between td-action">
                                                 @await Html.PartialAsync("_PopupConfirm")

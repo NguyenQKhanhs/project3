@@ -54,6 +54,7 @@ namespace Proj3.Controllers
             }
             return RedirectToAction("admin_account");
         }
+
         [Authorize]
         public ActionResult admin_account_add()
         {
@@ -64,20 +65,19 @@ namespace Proj3.Controllers
         [HttpPost]
         public async Task<ActionResult> admin_account_add(Account account)
         {
-
-            {
-                account.CreatedAt = DateTime.UtcNow;
-                await _context.Accounts.AddAsync(account); // Use async add
-                await _context.SaveChangesAsync();
-                return RedirectToAction("admin_account");
-            }
-
+            var passwordHasher = new PasswordHasher<Account>();
+            account.Password = passwordHasher.HashPassword(account, account.Password);
+            account.CreatedAt = DateTime.UtcNow;
+            await _context.Accounts.AddAsync(account);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("admin_account");
         }
 
         public IActionResult login()
         {
             return View();
         }
+
 
         [Authorize]
         [HttpGet]
@@ -91,27 +91,25 @@ namespace Proj3.Controllers
             return View(existingAccount);
         }
 
+
         [Authorize]
         [HttpPost]
         public async Task<ActionResult> admin_account_edit(Account account)
         {
-
+            var existingAccount = await _context.Accounts.FindAsync(account.AccountId);
+            if (existingAccount == null)
             {
-                var existingAccount = await _context.Accounts.FindAsync(account.AccountId);
-                if (existingAccount == null)
-                {
-                    return NotFound();
-                }
-
-                existingAccount.Username = account.Username;
-                existingAccount.FullName = account.FullName;
-                existingAccount.Email = account.Email;
-                existingAccount.Password = account.Password;
-
-                await _context.SaveChangesAsync();
-                return RedirectToAction("admin_account");
+                return NotFound();
             }
 
+            var passwordHasher = new PasswordHasher<Account>();
+            existingAccount.Password = passwordHasher.HashPassword(existingAccount, account.Password);
+            existingAccount.Username = account.Username;
+            existingAccount.FullName = account.FullName;
+            existingAccount.Email = account.Email;
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction("admin_account");
         }
 
         [Authorize]
