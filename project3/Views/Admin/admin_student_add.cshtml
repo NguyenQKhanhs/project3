@@ -1,0 +1,96 @@
+@model Project3.Models.CustomerInformation
+
+@{
+    Layout = "~/Views/Shared/_layoutadmin.cshtml";
+}
+
+
+<style>
+    /* Đổi màu chữ của placeholder thành màu trắng */
+    input::placeholder {
+        color: white;
+        opacity: 1; /* Đảm bảo màu sắc hiển thị đầy đủ */
+    }
+</style>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            
+            <div class="card">
+                <div class="card-body margin-1-3rem custom-bg">
+                    <h1 style="color:white" class="text-center">Add Student</h1>
+                    <div class="container mt-1 px-2">
+                        <form asp-action="admin_student_add" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="CustomerInformationId" value="@Model.CustomerInformationId" />
+
+                            <div class="col-md-8 mx-auto" >
+                                <label class="labels">Full Name</label>
+                                <input type="text" id="FullName" name="FullName" class="form-control w-100" style="height: 50px" placeholder="Enter Full Name" value="@Model.FullName" required >
+                            </div>
+
+                            <div class="col-md-8 mx-auto">
+                                <label class="labels">Email</label>
+                                <input type="email" id="Email" name="Email" class="form-control w-100" style="height: 50px" placeholder="Enter Email" value="@Model.Email" required>
+                            </div>
+
+                            <div class="col-md-8 mx-auto">
+                                <label class="labels">Phone Number</label>
+                                <input type="tel" id="PhoneNumber" name="PhoneNumber" class="form-control w-100" style="height: 50px" placeholder="Enter Phone Number" value="@Model.PhoneNumber" required>
+                            </div>
+
+                            <!-- Dropdown danh sách khóa học -->
+                            <div class="col-md-8 mx-auto">
+                                <label class="labels">Course</label>
+                                <select id="CourseId" name="CourseId" class="form-control w-100" style="height: 50px" required>
+                                    <option value="">Chosse Course</option>
+                                    @if (ViewBag.Courses is IEnumerable<Project3.Models.Course> courses && courses != null)
+                                    {
+                                        if (courses.Any())
+                                        {
+                                            foreach (var course in courses)
+                                            {
+                                                <option value="@course.CourseId">@course.Name</option>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <option disabled>No courses available</option>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <option disabled>Unable to download the course list</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="CourseId" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="col-md-8 mx-auto">
+                                <label class="labels">Schedule</label>
+                                <select asp-for="Schedule" class="form-control w-100" style="height: 50px" required>
+                                    
+                                    <option value="Morning">Morning</option>
+                                    <option value="Afternoon">Afternoon</option>
+                                    <option value="Evening">Evening</option>
+                                </select>
+                                <span asp-validation-for="Schedule" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="text-end col-md-8 mx-auto">
+                                <button type="submit" class="btn btn-outline-success m-1">Save</button>
+                                <a asp-action="AdminStudent" class="btn btn-outline-secondary m-1">Back</a>
+                            </div>
+
+                            <!-- Hiển thị thông báo nếu có lỗi -->
+                            @if (ViewBag.Message != null)
+                            {
+                                <p class="text-danger">@ViewBag.Message</p>
+                            }
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

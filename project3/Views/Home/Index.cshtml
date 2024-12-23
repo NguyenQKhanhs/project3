@@ -1,0 +1,856 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<Project3.Models.Course>
+<!--====== HERO PART START ======-->
+<section id="home" class="hero-area bg_cover">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-xl-5 offset-xl-7 col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                <div class="hero-content">
+                    <h2 class="mb-30 wow fadeInUp" data-wow-delay=".2s">
+                        Empowering IT Professionals with Quality Training and Resources
+                    </h2>
+                    <p class="wow fadeInUp" data-wow-delay=".4s">
+                        Symphony Ltd. is a leading private institute offering
+                        comprehensive training and certification courses in IT and
+                        Software industries, including networking, Java, and database
+                        management (SQL Servers, Oracle, etc.). With multiple branches
+                        across the state, they provide expert resources such as
+                        preparation materials, lab facilities, extended lab hours, 24/7
+                        faculty support, assignments, and library access to ensure the
+                        success of their students.
+                    </p>
+                    <div class="hero-btns">
+                        <a href="#courses" class="main-btn wow fadeInUp" data-wow-delay=".6s">Courses</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hero-left">
+        <img src="~/homeasset/images/hero-img.png" alt="" />
+        <img src="~/homeasset/images/dot-shape.svg" alt="" class="shape" />
+    </div>
+</section>
+<!--====== HERO PART END ======-->
+<!--====== SKILL PART START ======-->
+<section id="skill" class="skill-area pt-170">
+    <div class="container">
+        <div class="row">
+            <div class="mx-auto col-xl-6 col-lg-7 col-md-10">
+                <div class="text-center section-title">
+                    <h2 class="mb-15 wow fadeInUp" data-wow-delay=".2s">
+                        Learn New Skills
+                    </h2>
+                    <p class="wow fadeInUp" data-wow-delay=".4s"></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 course-container col-md-6">
+                <div class="single-skill wow fadeInUp" data-wow-delay=".2s">
+                    <div class="skill-icon">
+                        <i class="lni lni-pencil-alt"></i>
+                    </div>
+                    <div class="skill-content">
+                        <h4>Learn Anything</h4>
+                        <p>
+                            Information Technology is the backbone of modern innovation,
+                            shaping the way we communicate, work, and live.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 course-container col-md-6">
+                <div class="single-skill wow fadeInUp" data-wow-delay=".4s">
+                    <div class="skill-icon">
+                        <i class="lni lni-grid-alt"></i>
+                    </div>
+                    <div class="skill-content">
+                        <h4>Large Collection</h4>
+                        <p>
+                            In the rapidly evolving world of IT, staying ahead means
+                            constantly learning, adapting, and embracing new technologies.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 course-container col-md-6">
+                <div class="single-skill wow fadeInUp" data-wow-delay=".6s">
+                    <div class="skill-icon">
+                        <i class="lni lni-certificate"></i>
+                    </div>
+                    <div class="skill-content">
+                        <h4>Certified Instructors</h4>
+                        <p>
+                            The IT industry not only drives business growth but also opens
+                            endless opportunities for creativity and problem-solving in
+                            every sector.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--====== SKILL PART ENDS ======-->
+<!--====== COURSES PART START ======-->
+<section id="courses" class="course-area pt-140 pb-170">
+    <div class="container">
+        <div class="row">
+            <div class="mx-auto col-xl-6 col-lg-7 col-md-10">
+                <div class="text-center section-title mb-50">
+                    <h2 class="mb-15 wow fadeInUp" data-wow-delay=".2s">
+                        Popular Courses
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-30">
+            @if (Model != null && Model.Any())
+            {
+                @foreach (var course in Model)
+                {
+                    <div class="col-xl-4 course-container col-lg-4 col-md-6">
+                        <div class="single-course wow fadeInUp" data-wow-delay=".2s">
+                            <div class="course-img">
+                                <a asp-area="" asp-controller="Home" asp-action="course_single" asp-route-id="@course.CourseId">
+                                    <img src="@course.ImageUrl" alt="@course.Name" />
+                                </a>
+                            </div>
+                            <div class="course-info">
+                                <h4>
+                                    <a asp-area="" asp-controller="Home" asp-action="course_single" asp-route-id="@course.CourseId">@course.Name</a>
+                                </h4>
+                                <!-- Thông tin khóa học có thể thêm ở đây -->
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-12">
+                    <p class="text-center">Không có khóa học nào để hiển thị.</p>
+                </div>
+            }
+        </div>
+        
+
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="text-center view-all-btn">
+                    <a a asp-area="" asp-controller="Home" asp-action="courses" class="main-btn">View All Course</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--====== COURSES PART ENDS ======-->
+<!--====== WELCOME PART START ======-->
+<section class="welcome-area">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-xl-6 col-lg-6">
+                <div class="welcome-content">
+                    <div class="section-title">
+                        <h2 class="mb-35 wow fadeInUp" data-wow-delay=".2s">
+                            Welcome To SYMPHONY LIMITED
+                        </h2>
+                    </div>
+                    <div class="content">
+                        <p class="mb-35 wow fadeInUp" data-wow-delay=".4s">
+                            Symphony Ltd. is private institute, which generally conducts
+                            the classes and training materials for the various
+                            certifications that are related to IT and Software industries
+                            like networking related, Java related, database related like
+                            for SQL Servers, oracle, etc. They are one of the famous
+                            institutions which have spread in to various branches situated
+                            at different location in the state. They provide various
+                            resources like the preparation materials, lab facilities based
+                            on the subject, extra lab hours or sessions (offered after the
+                            course duration), 24 hours faculty guidance is provided for
+                            the lab sessions, assignments, Library facilities, etc.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6">
+                <div class="welcome-img">
+                    <img src="~/homeasset/images/welcome-img.png" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--====== WELCOME PART ENDS ======-->
+<!--====== CATEGORIES PART START ======-->
+<!--====== CATEGORIES PART ENDS ======-->
+<!--====== VIDEO PART START ======-->
+<section id="why" class="video-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 offset-xl-6 offset-lg-6">
+                <div class="video-content-wrapper">
+                    <div class="section-title">
+                        <h2 class="wow fadeInUp" data-wow-delay=".2s">
+                            What Makes Us Different?
+                        </h2>
+                        <p class="wow fadeInUp" data-wow-delay=".4s"></p>
+                    </div>
+                    <div class="specialty-wrapper">
+                        <div class="specialty-item">
+                            <div class="specialty-icon-wrapper">
+                                <div class="specialty-icon">
+                                    <i class="lni lni-grid-alt"></i>
+                                </div>
+                            </div>
+                            <div class="specialty-content">
+                                <h4>Diverse Training Programs</h4>
+                                <p>
+                                    Offers courses in networking, Java, and database
+                                    management for various certifications.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="specialty-item">
+                            <div class="specialty-icon-wrapper">
+                                <div class="specialty-icon">
+                                    <i class="lni lni-users"></i>
+                                </div>
+                            </div>
+                            <div class="specialty-content">
+                                <h4>24/7 Faculty Support</h4>
+                                <p>
+                                    Provides round-the-clock guidance and extended lab hours
+                                    for better learning.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="specialty-item">
+                            <div class="specialty-icon-wrapper">
+                                <div class="specialty-icon">
+                                    <i class="lni lni-support"></i>
+                                </div>
+                            </div>
+                            <div class="specialty-content">
+                                <h4>Multiple Locations & Resources</h4>
+                                <p>
+                                    Multiple branches and extensive facilities, including labs
+                                    and libraries, for flexible learning.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="video-wrapper">
+        <img src="~/homeasset/images/video-bg.jpg" alt="" />
+        <div class="video-btn">
+            <a href="#" class="play-btn glightbox">
+                <i class="lni lni-play"></i>
+            </a>
+        </div>
+    </div>
+</section>
+<!--====== VIDEO PART ENDS ======-->
+<!--====== TEAM PART START ======-->
+<section id="mentors" class="team-area pt-170 pb-50">
+    <div class="container">
+        <div class="row">
+            <div class="mx-auto col-xl-6 col-lg-7 col-md-10">
+                <div class="text-center section-title">
+                    <h2 class="wow fadeInUp" data-wow-delay=".2s">
+                        Our Expert Instructors
+                    </h2>
+                    <p class="wow fadeInUp" data-wow-delay=".4s"></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-3 col-lg-3 col-md-6">
+                <div class="single-team">
+                    <div class="team-img">
+                        <img src="https://i.imgur.com/tATWZoE.jpeg" alt="" />
+                        <div class="social-link">
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <i class="lni lni-facebook-filled"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <i class="lni lni-twitter-filled"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <i class="lni lni-instagram-filled"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h4>Jesika Parnendaj</h4>
+                        <p>Expert Designer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-6">
+                <div class="single-team">
+                    <div class="team-img">
+                        <img src="https://i.imgur.com/qLfUpbC.jpeg" alt="" />
+                        <div class="social-link">
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <i class="lni lni-facebook-filled"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <i class="lni lni-twitter-filled"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <i class="lni lni-instagram-filled"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h4>Nelson Mendela</h4>
+                        <p>Web Developer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-6">
+                <div class="single-team">
+                    <div class="team-img">
+                        <img src="https://i.imgur.com/ADQUqCv.png" alt="" />
+                        <div class="social-link">
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <i class="lni lni-facebook-filled"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <i class="lni lni-twitter-filled"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <i class="lni lni-instagram-filled"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h4>Jhon Abraham</h4>
+                        <p>Business Marketing Expert</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-3 col-md-6">
+                <div class="single-team">
+                    <div class="team-img">
+                        <img src="https://i.imgur.com/TIuVvui.png" alt="" />
+                        <div class="social-link">
+                            <ul>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <i class="lni lni-facebook-filled"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <i class="lni lni-twitter-filled"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <i class="lni lni-instagram-filled"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h4>Senidso Smid</h4>
+                        <p>SEO Expert</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+
+<!--====== TEAM PART ENDS ======-->
+<!--====== TESTIMONIAL PART START ======-->
+<section id="questions" class="team-area  pb-140">
+    <div class="container">
+        <div class="row">
+            <div class="mx-auto col-xl-6 col-lg-7 col-md-10">
+                <div class="text-center section-title">
+                    <h2 class="wow fadeInUp" data-wow-delay=".2s">Course Consultation Questions</h2>
+                    <p class="wow fadeInUp" data-wow-delay=".4s">Symphony Limited Hello, can you please fill in the
+                        answers to some of the following questions so we can help advise you</p>
+                </div>
+            </div>
+        </div>
+        <!-- Form Steps -->
+        <div class="form-step active">
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>Is this course suitable for beginners?</h3>
+                    <div class="point"></div>
+                </div>
+                <div class="accordion-content">
+                    <p>Yes, this course is designed to cater to all levels, especially beginners. We provide courses
+                        that cover foundational topics in IT, such as basic programming, system administration,
+                        databases, cybersecurity, and more. These courses will help you get started with IT from scratch
+                        and gradually build a strong foundation. Even if you have no prior knowledge of IT, you can
+                        confidently take the course and learn at your own pace.</p>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>Does the course offer a certificate upon completion?</h3>
+                    <div class="point"></div>
+                </div>
+                <div class="accordion-content">
+                    <p>Yes, upon completing the course, you will receive a certificate from us, acknowledging that you
+                        have successfully met all the requirements and gained knowledge in IT. This certificate not only
+                        marks your learning progress but also serves as proof to potential employers that you have the
+                        skills necessary to work in the IT field. For certain courses, we even offer internationally
+                        recognized certificates, which will boost your confidence in the job market.</p>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>Can I learn online, or do I have to attend physical classes?</h3>
+                    <div class="point"></div>
+                </div>
+                <div class="accordion-content">
+                    <p>We offer both online and in-person learning options. If you are busy and cannot attend classes in
+                        person, online learning will be the ideal choice. You can study anytime, anywhere, as long as
+                        you have an internet connection. However, if you prefer face-to-face interaction, we also offer
+                        in-person classes at our centers. Both learning formats are designed to provide the highest
+                        quality education, and you can choose whichever suits your schedule.</p>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>Does the course offer flexible study hours, and when can I learn?</h3>
+                    <div class="point"></div>
+                </div>
+                <div class="accordion-content">
+                    <p>Yes, our courses are designed with flexibility in mind. If you are taking the online course, you
+                        can study at your own pace, without being restricted by set hours. All course materials are
+                        available to you at any time. You can also choose to study during weekends or after work hours,
+                        ensuring that your learning does not interfere with your daily commitments. For in-person
+                        classes, we offer various schedules throughout the week, so you can easily fit the class into
+                        your personal routine.</p>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>Does the course include study materials and practical assignments?</h3>
+                    <div class="point"></div>
+                </div>
+                <div class="accordion-content">
+                    <p>Yes, throughout the course, you will be provided with comprehensive study materials, including
+                        lecture notes, PDFs, video tutorials, and practical assignments that will help reinforce your
+                        learning. Practical assignments are crucial for applying the knowledge gained in real-world
+                        scenarios, such as programming, web development, or system management. Additionally, you will
+                        participate in hands-on projects that will enhance your skills and prepare you for real-life
+                        work situations.</p>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>Is there a limit to the number of students in the course?</h3>
+                    <div class="point"></div>
+                </div>
+                <div class="accordion-content">
+                    <p>To ensure high-quality teaching and good interaction between the instructor and students, we
+                        limit the number of students in each class. This allows the instructor to give personal
+                        attention to each student and create an environment where everyone can actively participate. You
+                        won’t feel overlooked in a large class. If you register early, you will have a better chance of
+                        joining a class with a limited number of students.</p>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>How much does this IT course cost? Are there any student discounts or specials?</h3>
+                    <div class="point"></div>
+                </div>
+                <div class="accordion-content">
+                    <p>The tuition fee for the IT course is approximately 210 USD, and we currently have a 20% discount
+                        program for students who register through their school email. If you have any questions about
+                        the discount program, feel free to contact us for more details.</p>
+                </div>
+            </div>
+
+        </div> <!--===step 1===-->
+
+        <div class="form-step">
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>What specific skills will I learn in this IT course?</h3>
+                    <div class="point"></div>
+                </div>
+                <div class="accordion-content">
+                    <p>Our course covers a wide range of essential IT skills. You will learn everything from basic
+                        programming (Python, Java, C++) to advanced topics such as web development, user interface
+                        design, system administration, and network security. We also teach popular tools and software
+                        used in the industry, including Git, Docker, AWS, Azure, and others. Each course is designed to
+                        be thorough and practical, helping you understand and apply what you learn in real-world
+                        situations.</p>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>Does the course include training on popular tools and software in the IT industry?</h3>
+                    <div class="point"></div>
+                </div>
+                <div class="accordion-content">
+                    <p>Yes, our course not only covers theoretical knowledge but also focuses on training you with the
+                        most widely used tools and software in the IT industry. You will learn how to use development
+                        tools such as Visual Studio, Eclipse, database management systems like MySQL and MongoDB, and
+                        version control tools like Git. We also provide training on cloud platforms such as AWS and
+                        Azure, ensuring you stay up-to-date with the latest technology trends.</p>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>Will the course prepare me for international IT certifications?</h3>
+                    <div class="point"></div>
+                </div>
+                <div class="accordion-content">
+                    <p>Yes, we offer specialized training programs that are designed to help you prepare for
+                        internationally recognized IT certifications like CompTIA, Cisco (CCNA), Microsoft, AWS, and
+                        Google. Our courses follow official certification curricula, providing you with all the
+                        materials and mock tests needed to pass the exams. Upon completing the course, you’ll be ready
+                        to take the certification exams and confidently showcase your expertise to potential employers.
+                    </p>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>After completing the course, will I be able to find a job in the IT industry?</h3>
+                    <div class="point"></div>
+                </div>
+                <div class="accordion-content">
+                    <p>Absolutely. One of our main goals is to ensure that students are well-prepared to enter the IT
+                        workforce. After completing the course, you will have the skills and knowledge required to work
+                        in various IT fields such as software development, system administration, network security, and
+                        more. We also assist students in finding job opportunities through our partnerships with
+                        recruitment agencies, giving you a direct pathway into the job market.</p>
+                </div>
+            </div>
+
+        </div> <!--===step 2===-->
+
+        <div class="form-step">
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>Are the instructors experienced in the IT industry?</h3>
+                    <div class="point"></div>
+                </div>
+                <div class="accordion-content">
+                    <p>Yes, all of our instructors are experienced professionals in the IT industry with many years of
+                        hands-on experience. They have worked in top technology companies and are highly knowledgeable
+                        about current trends and challenges in the industry. Our instructors not only teach theory but
+                        also share real-world insights, helping you understand the practical applications of what you’re
+                        learning. They are always available to provide guidance and answer questions during the course.
+                    </p>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>Does the course offer support for resolving questions or difficulties during learning?</h3>
+                    <div class="point"></div>
+                </div>
+                <div class="accordion-content">
+                    <p>Definitely. We are committed to providing full support throughout your learning journey. If you
+                        encounter any difficulties, you can easily reach out to the instructors via email or through our
+                        online Q&A system. Additionally, we offer weekly office hours where you can get personalized
+                        assistance. We also have a dedicated student support team that is available to help with any
+                        non-technical issues you may encounter.</p>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>Are there different levels in this course (beginner, intermediate, advanced)?</h3>
+                    <div class="point"></div>
+                </div>
+                <div class="accordion-content">
+                    <p>Yes, we offer courses at various levels, from beginner to advanced, so that you can start with
+                        the basics and progress to more complex topics. Whether you’re just starting in IT or looking to
+                        expand your expertise, we have a course level suitable for your needs. We carefully structure
+                        our courses to help you advance at your own pace, ensuring that you fully grasp each concept
+                        before moving on to the next level.</p>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>Are the instructors qualified enough to answer difficult questions?</h3>
+                    <div class="point"></div>
+                </div>
+                <div class="accordion-content">
+                    <p>Yes, our instructors are highly qualified, holding advanced degrees and certifications in IT.
+                        They possess in-depth knowledge of both theoretical concepts and practical applications in the
+                        field. They are more than capable of answering challenging questions and providing detailed
+                        explanations of complex topics, ensuring that you fully understand the material and are prepared
+                        for real-world IT scenarios.
+
+                    </p>
+                </div>
+            </div>
+
+        </div> <!--===step 3===-->
+
+
+        <!-- Step Navigation -->
+        <div class="row">
+            <div class="col-12 text-center mb-4">
+                <div class="step-navigation">
+                    <button class="step-btn active" data-step="0">1</button>
+                    <button class="step-btn" data-step="1">2</button>
+                    <button class="step-btn" data-step="2">3</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</section>
+
+@* <section class="testimonial-area pt-80 pb-90" style="background: #fbfbfb">
+    <div class="container">
+        <div class="row">
+            <div class="mx-auto col-xl-6 col-lg-7 col-md-10">
+                <div class="text-center section-title mb-50">
+                    <h2 class="mb-15 wow fadeInUp" data-wow-delay=".2s">
+                        What Our Ex-Students Says
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="mx-auto col-xl-6 col-lg-8">
+                <div id="customize_wrapper" class="testimonial-wrapper">
+                    <div class="customize-tools">
+                        <ul class="thumbnails d-flex justify-content-center"
+                            id="customize-thumbnails">
+                            <li>
+                                <img src="~/homeasset/images/testimonial/testimonial-1.png"
+                                     alt="" />
+                            </li>
+                            <li>
+                                <img src="~/homeasset/images/testimonial/testimonial-2.png"
+                                     alt="" />
+                            </li>
+                            <li>
+                                <img src="~/homeasset/images/testimonial/testimonial-3.png"
+                                     alt="" />
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="customize" id="customize">
+                        <div class="testimonial-content-wrapper">
+                            <div class="testimonial-info">
+                                <h4>Michel Sdmith</h4>
+                                <p>120 Bach Student</p>
+                            </div>
+                            <div class="testimonial-content">
+                                <p>
+                                    "Symphony Ltd. gave me the skills and confidence to excel
+                                    in my IT career. The hands-on training and constant
+                                    support made all the difference."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="testimonial-content-wrapper">
+                            <div class="testimonial-info">
+                                <h4>Tulsi Kumer</h4>
+                                <p>Web Designer</p>
+                            </div>
+                            <div class="testimonial-content">
+                                <p>
+                                    "Thanks to Symphony Ltd., I passed my certification exams
+                                    with ease. The comprehensive materials and expert guidance
+                                    were key to my success."
+                                </p>
+                            </div>
+                        </div>
+                        <div class="testimonial-content-wrapper">
+                            <div class="testimonial-info">
+                                <h4>John Doe</h4>
+                                <p>UX Ui Designer</p>
+                            </div>
+                            <div class="testimonial-content">
+                                <p>
+                                    "The faculty at Symphony Ltd. were always there to help,
+                                    whether it was late-night lab sessions or tackling tough
+                                    assignments. It truly felt like a partnership in my
+                                    learning journey."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End row -->
+    </div>
+    <!-- End container -->
+</section> *@
+<!--====== TESTIMONIAL PART ENDS ======-->
+<!--====== BLOG PART START ======-->
+<!-- <section id="blog" class="blog-area pt-170 pb-140">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-lg-7">
+                <div class="section-title">
+                    <h2 class="wow fadeInUp" data-wow-delay=".2s">From The Blog</h2>
+                    <p class="wow fadeInUp" data-wow-delay=".4s">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt utlabo</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="single-blog">
+                    <div class="blog-img">
+                        <a href="javascript:void(0)" class="d-block">
+                            <img src="assets/images/blog/blog-1.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="blog-content">
+                        <h4><a href="javascript:void(0)">Modern website design
+                        tools</a></h4>
+                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr sed diam.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="single-blog">
+                    <div class="blog-img">
+                        <a href="javascript:void(0)" class="d-block">
+                            <img src="assets/images/blog/blog-2.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="blog-content">
+                        <h4><a href="javascript:void(0)">How To install SSL</a></h4>
+                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr sed diam.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="single-blog">
+                    <div class="blog-img">
+                        <a href="javascript:void(0)" class="d-block">
+                            <img src="assets/images/blog/blog-3.jpg" alt="">
+                        </a>
+                    </div>
+                    <div class="blog-content">
+                        <h4><a href="javascript:void(0)">Getting started with Figma</a></h4>
+                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr sed diam.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+<!--====== BLOG PART ENDS ======-->
+<!--====== CONTACT PART START ======-->
+<section id="contact" class="contact-area">
+    <div class="map-bg">
+        <img src="~/homeasset/images/map-bg.svg" alt="" />
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5 col-lg-5">
+                <div class="section-title">
+                    <h2 class="wow fadeInUp" data-wow-delay=".2s">Get In Touch</h2>
+                    <p class="wow fadeInUp" data-wow-delay=".4s">
+                        All your feedback is duly noted by us.
+                    </p>
+                </div>
+                <div class="contact-content">
+                    <h3>Hot Line Call Us 24/7</h3>
+                    <h4><a href="javascript:void(0)">094-629-39-47</a></h4>
+                    <h4>
+                        <a href="javascript:void(0)">
+                            <span class="__cf_email__"
+                                data-cfemail="92faf7fefefdd2f5fff3fbfebcf1fdff">symphonyltd8386@gmail.com</span>
+                        </a>
+                    </h4>
+                </div>
+            </div>
+            <div class="col-xl-7 col-lg-7">
+                <div class="contact-form-wrapper">
+                    <form action="" method="post">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" placeholder="Name" name="Name" id="Name" required />
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" placeholder="Email" name="Email" id="Email" required />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <input type="text" placeholder="Subject" name="Subject" id="Subject" required />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <textarea name="Message" id="Message" rows="4" placeholder="Message"
+                                    required></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="text-right col-12">
+                                <button class="main-btn btn-hover" type="submit">
+                                    Send
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--====== CONTACT PART ENDS ======-->

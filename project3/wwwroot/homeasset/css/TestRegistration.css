@@ -1,0 +1,97 @@
+
+.tracuudiem-image {
+    border-radius: 0 0 23% 0;
+    filter: brightness(0.78);
+}
+
+.tracuudiem-bg {
+    background-color: #2f3a48 !important;
+    color: #fff !important;
+
+
+}
+
+.tracuudiem-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #fff;
+}
+
+.bg-nav{
+    display: block;
+    width: 100%;
+    height: 120px;
+    background-color: #2f3a48 !important;
+    margin-bottom: 50px;
+}
+
+.test-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(176.4px, 1fr));
+    gap: 50px;
+    padding: 20px;
+}
+
+.test-card {
+    background-color: #fff;
+    width: 100%;  /* Chiều rộng */
+    height: 200.93px;  /* Chiều cao */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1); /* Bóng nổi */
+    transition: box-shadow 0.3s ease; /* Hiệu ứng chuyển động khi di chuột */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden; /* Đảm bảo không bị tràn ra ngoài */
+}
+
+.test-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 16px 32px rgba(0, 0, 0, 0.2); /* Bóng nổi khi hover */
+}
+
+.test-card h2 {
+    font-size: 16.32px; /* Cỡ chữ tiêu đề */
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    word-wrap: break-word; /* Cho phép ngắt từ */
+    white-space: normal; /* Hiển thị trên nhiều dòng */
+}
+
+.test-card p {
+    font-size: 12px;  /* Giảm kích thước văn bản */
+    color: #666;
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+.test-card .duration, .test-card .code-attempts {
+    font-size: 10px;  /* Giảm kích thước thông tin */
+    color: #999;
+    margin-bottom: 5px; /* Giảm khoảng cách giữa các phần */
+}
+
+.test-card .test-details {
+    flex-grow: 0;
+    margin-bottom: 10px; /* Giảm khoảng cách dưới cùng của test-details */
+}
+
+.test-card button {
+    padding: 8px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px; /* Giảm kích thước nút */
+}
+
+.test-card button:hover {
+    background-color: #0056b3;
+}

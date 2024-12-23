@@ -1,0 +1,44 @@
+@model Project3.Models.Feedbacks
+
+@{
+    Layout = "~/Views/Shared/_layoutadmin.cshtml";
+}
+
+<div class="container py-5 pt-20">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0 rounded-4" style="transform: scale(1.4);background-color: #fff!important;">
+                <div class="card-header bg-gradient-primary text-white text-center rounded-top">
+                    <h3 class="fw-bold mb-0">Feedback Details</h3>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h6 class="text-muted"><i class="bi bi-person"></i> Name</h6>
+                            <p class="fw-bold text-primary">@Model.Name</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-muted"><i class="bi bi-book"></i> Subject</h6>
+                            <p class="fw-bold text-primary">@Model.Subject</p>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h6 class="text-muted"><i class="bi bi-envelope"></i> Email</h6>
+                            <p class="fw-bold text-primary">@Model.Email</p>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <h6 class="text-muted"><i class="bi bi-chat-text"></i> Message</h6>
+                            <p class="fw-bold text-primary">@Model.Message</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-5 text-end">
+                    <a asp-controller="Admin" asp-action="admin_feedback" class="btn btn-outline-secondary">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

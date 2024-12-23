@@ -1,0 +1,69 @@
+@model Project3.Models.Class
+
+@{
+    Layout = "~/Views/Shared/_layoutadmin.cshtml";
+}
+
+
+<style>
+    /* Đổi màu chữ của placeholder thành màu trắng */
+    input::placeholder {
+        color: white;
+        opacity: 1; /* Đảm bảo màu sắc hiển thị đầy đủ */
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <div class="card">
+                <div class="card-body margin-1-3rem custom-bg">
+                    <h1 style="color:white; text-align: center;">Edit Class</h1>
+                    <div class="container mt-3 px-2" style="padding: 0 15%!important">
+                        <form asp-action="admin_class_edit" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="ClassesId" value="@Model.ClassesId" />
+
+                                                        <div class="col-md-12">
+                                <label class="labels">Instructor</label>
+                                <select id="InstructorId" name="InstructorId" class="form-control" required>
+                                    <option value="">Choose Instructor</option>
+                                    @if (ViewBag.Instructors is IEnumerable<Project3.Models.Instructor> instructors && instructors != null)
+                                    {
+                                        foreach (var instructor in instructors)
+                                        {
+                                            <option value="@instructor.InstructorId">@instructor.Name</option>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <option disabled>No instructors available</option>
+                                    }
+                                </select>
+                                <span asp-validation-for="InstructorId" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <label class="labels">Description</label>
+                                <textarea asp-for="Description" class="form-control w-100"
+                                    placeholder="Enter Course Description" rows="7" required></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+
+                            <br />
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-outline-success m-1">Save</button>
+                                <a asp-action="admin_class" class="btn btn-outline-secondary m-1">Back</a>
+                            </div>
+
+                            <!-- Hiển thị thông báo nếu có lỗi -->
+                            @if (ViewBag.Message != null)
+                            {
+                                <p class="text-danger">@ViewBag.Message</p>
+                            }
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

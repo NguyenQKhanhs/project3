@@ -1,0 +1,64 @@
+@model Project3.Models.CustomerInformation
+
+@{
+    Layout = "~/Views/Shared/_layoutadmin.cshtml";
+}
+
+<div class="container py-5 pt-20">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0 rounded-4" style="transform: scale(1.4);background-color: #fff!important;">
+                <div class="card-header bg-gradient-primary text-white text-center rounded-top">
+                    <h3 class="fw-bold mb-0">Student Information</h3>
+                </div>
+                <div class="card-body p-4">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h6 class="text-muted"><i class="bi bi-person-badge"></i> Student ID</h6>
+                            <p class="fw-bold text-primary">@Model.CustomerInformationId</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-muted"><i class="bi bi-book"></i> Course</h6>
+                            <p class="fw-bold text-primary">@Model.Course?.Name</p>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h6 class="text-muted"><i class="bi bi-person"></i> Name</h6>
+                            <p class="fw-bold text-primary">@Model.FullName</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-muted"><i class="bi bi-check-circle"></i> Status</h6>
+                            <p class="fw-bold text-status @Model.Status.ToLower() == 'active' ? 'text-success'
+                                : 'text-danger'">@Model.Status</p>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h6 class="text-muted"><i class="bi bi-telephone"></i> Phone Number</h6>
+                            <p class="fw-bold text-primary">@Model.PhoneNumber</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-muted"><i class="bi bi-calendar3"></i> Schedule</h6>
+                            <p class="fw-bold text-primary">@Model.Schedule</p>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h6 class="text-muted"><i class="bi bi-envelope"></i> Email</h6>
+                            <p class="fw-bold text-primary">@Model.Email</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-muted"><i class="bi bi-graph-up-arrow"></i> Mark</h6>
+                            <p class="fw-bold text-success">@Model.Mark?.ToString("F2")</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-end">
+                    <a asp-controller="Admin" asp-action="adminstudent"
+                       class="btn btn-right btn-outline-secondary m-1 btn-view">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

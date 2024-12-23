@@ -1,0 +1,82 @@
+﻿@model Project3.Models.Instructor
+
+@{
+    Layout = "~/Views/Shared/_layoutadmin.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="card" >
+        <div class="card-body" style="margin:0.25rem!important">
+            <h5 class="card-title fw-semibold mb-4"></h5>
+            <div class="card">
+                <div class="card-body m-2 custom-bg">
+                    <h1 class="text-center">Add Instructor</h1>
+                    <div class="container mt-5 px-2">
+                        <div class="table-responsive">
+                            <form asp-action="admin_instructor_add" method="post" enctype="multipart/form-data">
+                                <!-- Tên -->
+                                <div class="col-md-8 mx-auto">
+                                    <label asp-for="Name" class="form-label " style="font-size: 18px">Name</label>
+                                    <input asp-for="Name" class="form-control w-100" style="height: 50px" placeholder="Enter Instructor Name" required />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+
+                                <!-- Giới tính -->
+                                <div class="col-md-8 mx-auto mt-3">
+                                    <label class="form-label " style="font-size: 18px">Gender</label>
+                                    <div>
+                                        <input type="radio" asp-for="Gender" value="Male" id="genderMale" />
+                                        <label for="genderMale">Male</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" asp-for="Gender" value="Female" id="genderFemale" />
+                                        <label for="genderFemale">Female</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" asp-for="Gender" value="Other" id="genderOther" />
+                                        <label for="genderOther">Other</label>
+                                    </div>
+                                    <span asp-validation-for="Gender" class="text-danger"></span>
+                                </div>
+
+                                <!-- Tiểu sử -->
+                                <div class="col-md-8 mx-auto mt-3">
+                                    <label asp-for="Bio" class="form-label " style="font-size: 18px">Bio</label>
+                                    <textarea asp-for="Bio" class="form-control w-100" placeholder="Enter Instructor Bio" required></textarea>
+                                    <span asp-validation-for="Bio" class="text-danger"></span>
+                                </div>
+
+                                <!-- Số điện thoại -->
+                                <div class="col-md-8 mx-auto mt-3">
+                                    <label asp-for="PhoneNumber" class="form-label " style="font-size: 18px">Phone Number</label>
+                                    <input asp-for="PhoneNumber" type="text" class="form-control w-100" style="height: 50px" placeholder="Enter Phone Number" required />
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="col-md-8 mx-auto mt-3">
+                                    <label asp-for="Email" class="form-label " style="font-size: 18px">Email</label>
+                                    <input asp-for="Email" type="email" class="form-control w-100" style="height: 50px" placeholder="Enter Email Address" required />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+
+                                <!-- Ảnh -->
+                                <div class="col-md-8 mx-auto mt-3">
+                                    <label class="form-label " style="font-size: 18px">Upload Image</label>
+                                    <input type="file" name="Image" class="form-control w-100" required />
+                                </div>
+
+                                <!-- Nút thêm -->
+                                <div class="mt-4 mx-auto col-md-8 d-flex justify-content-end">
+                                    <button type="submit" class="btn btn-primary m-1">Add Instructor</button>
+                                    <a asp-action="admin_instructor" class="btn btn-secondary m-1">Cancel</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

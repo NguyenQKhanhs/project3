@@ -1,0 +1,82 @@
+/* Navigation Buttons */
+.step-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.step-btn {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background-color: #f2a92c26;
+  color: #ff8c00;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.step-btn.active {
+  background-color: #ff8c00;
+  color: #fff;
+}
+
+/* Accordion */
+.accordion {
+  background-color: #ffffff;
+  /*border: 1px solid #c9e3f3;*/
+  border-radius: 8px;
+  padding: 30px;
+  max-width: 4000px;
+  margin: 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  margin-bottom: 10px;
+}
+
+.accordion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.accordion-header h3 {
+  font-size: 22px;
+  margin: 0;
+  color: #f6a542;
+}
+
+.accordion-content {
+  margin-top: 10px;
+  display: none;
+  font-size: 16px;
+  color: #333;
+}
+
+.point {
+  width: 12px !important;
+  height: 12px !important;
+  border-left: 2px solid #ff8c00 !important;
+  border-bottom: 2px solid #ff8c00 !important;
+  transform: rotate(135deg) !important; /* Tam giác hướng lên */
+  transition: transform 0.3s ease !important;
+}
+
+.point.open {
+  transform: rotate(-45deg) !important; /* Xoay tam giác xuống */
+}
+
+/* Form Step Display */
+.form-step {
+  display: none !important;
+}
+
+.form-step.active {
+  display: block !important;
+}
+.accordion div.accordion-content p {
+  color: #48525c !important;
+}

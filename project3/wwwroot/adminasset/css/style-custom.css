@@ -1,0 +1,223 @@
+.body-page-custom {
+  background-color: #f1f5f9 !important ;
+  min-height: 100vh;
+}
+.sidebar-nav ul .sidebar-item .sidebar-link:hover {
+  /* background-color: transparent !important; */
+  color: #8cace4 !important;
+}
+
+.sidebar-nav ul .sidebar-item .sidebar-link {
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+span.hide-menu {
+  font-size: 16px;
+  font-weight: 550;
+}
+
+.card {
+  background-color: #f1f5f9 !important;
+}
+
+.sidebar-nav ul .sidebar-item.selected > .sidebar-link.active,
+.sidebar-nav ul .sidebar-item.selected > .sidebar-link,
+.sidebar-nav ul .sidebar-item > .sidebar-link.active {
+  /* background-color: transparent !important; */
+  color: #fff !important;
+}
+
+input {
+  color: #e8e8e8 !important;
+}
+
+table,
+tr,
+th,
+thead,
+td,
+tbody {
+  border: 0.5px solid #6b6969f6 !important;
+  color: #e8e8e8 !important;
+  text-align: center !important;
+  background-color: transparent !important;
+  font-size: 20px !important;
+}
+table {
+  border-radius: 20px !important;
+  overflow: hidden;
+}
+
+th {
+  text-align: center !important;
+}
+td {
+  line-height: 100px !important;
+}
+.td-action {
+  border: 0 !important;
+}
+.custom-heading {
+  font-size: 40px !important;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-left: 50px;
+}
+thead tr th {
+  background-color: #05172a !important;
+  color: #d7cece !important;
+}
+
+.btn-add {
+  /* color: #68a7e6 !important; */
+  background-color: #092747 !important;
+  border-color: #1e3751 !important;
+  color: #fff !important;
+  padding-left: 35px !important;
+  padding-right: 35px !important;
+  transition: all 0.4s !important;
+}
+.btn-search {
+  background-color: #092747 !important;
+  border-color: #1e3751 !important;
+  color: #fff !important;
+
+  transition: all 0.4s !important;
+  padding: 0 25px !important;
+}
+
+.btn-add:hover,
+.btn-search:hover {
+  background-color: #ec9f42 !important;
+  color: #fff !important;
+  /* color: white !important; */
+  /* color: #68a7e6 !important; */
+  /* color: #222 !important; */
+}
+
+.page-wrapper {
+  background-color: #eef5f9 !important;
+  height: 100vh;
+}
+
+.card {
+  margin-top: 15px !important;
+}
+
+.app-header {
+  background-color: transparent !important;
+}
+
+.navbar-color-custom {
+  background-color: transparent !important;
+}
+
+#navbarNav {
+  background-color: transparent !important;
+}
+.course-heading {
+  font-size: 35px !important;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.card-body {
+  padding-top: 0 !important;
+}
+.course-title-item {
+  color: #222 !important;
+  font-weight: 650;
+  font-size: 18px;
+  margin: 7px 0;
+}
+
+.course-title-item span,
+.course-title-item > div {
+  font-weight: 400;
+}
+span.hide-menu {
+  color: #111 !important;
+}
+
+label.labels {
+  color: #e8e8e8;
+  font-size: 20px;
+  font-weight: 550;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+}
+
+.btn-right {
+  float: inline-end;
+}
+
+.course-heading,
+.course-title-item {
+  color: #e8e8e8 !important;
+}
+
+.img-course {
+  border-radius: 10px !important;
+}
+
+.sidebar-item .sidebar-link span{
+    transition: all 0.3s!important; /* Thêm hiệu ứng chuyển động */
+}
+.sidebar-item:hover .sidebar-link span {
+  color: #ec9f42!important;
+}
+
+.sidebar-item.active {
+  color: white; /* Màu chữ khi mục được chọn */
+}
+
+.sidebar-item.active .sidebar-link span{
+  color: #ec9f42!important; /* Màu chữ của liên kết khi mục được chọn */
+  font-weight: bold; /* Để làm nổi bật liên kết */
+}
+
+.bg-color-#fff{
+    background-color: #fff !important;
+}
+*{
+  color: #222;
+}
+.custom-bg{
+  background-color:#ffffff ;
+  border-radius: 15px;
+}
+
+td, label, input{
+  color: #222!important;
+}
+input, select, textarea{
+  border:1px solid #222!important;
+}
+
+h1,h3{
+  color: #222!important;
+  margin-top: 20px!important;
+  margin-bottom: -1.5rem!important;
+}
+
+h6.text-muted{
+    color: #222!important;
+}
+html{
+background-color: #f1f5f9 !important;
+}
+
+.margin-1-3rem{
+  margin: 1.3rem!important;
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="date"], select{
+  height: 50px!important;
+}
+
+
+input.search{
+  height: 40px!important;
+}

@@ -1,0 +1,89 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Project3.Models.CustomerInformation
+
+<div class="d-flex min-vh-100" style="position:relative;">
+    <div style="width: 50%; height: 120px; background-color: #955f3fc2; position: absolute; top: 0; right: 0;"></div>
+    <!-- Left Side: Background Image -->
+    <div class="col-md-6 p-0">
+        <div class="h-100 w-100" style="
+            background-image: url('/images/bg-registration.jpg'); 
+            background-size: cover; 
+            background-position: center;">
+        </div>
+    </div>
+
+    <!-- Right Side: Registration Form -->
+    <div class="col-md-6 d-flex align-items-center justify-content-center">
+        <div style="width: 90%; max-width: 30rem;">
+            <div class="card-body">
+                <h3 class="text-center mb-4">Register for a Course</h3>
+                <form asp-action="registration" method="post">
+                    <div class="mb-3">
+                        <label for="FullName" class="form-label">Full Name</label>
+                        <input type="text" id="FullName" name="FullName" value="@Model?.FullName" class="form-control"
+                            placeholder="Enter full name" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="Email" class="form-label">Email</label>
+                        <input type="email" id="Email" name="Email" value="@Model?.Email" class="form-control"
+                            placeholder="Enter email" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="PhoneNumber" class="form-label">Phone Number</label>
+                        @* <input type="tel" id="PhoneNumber" name="PhoneNumber" value="@Model?.PhoneNumber" *@
+                        @*     class="form-control" placeholder="Enter phone number" required> *@
+                        <input type="tel" id="PhoneNumber" name="PhoneNumber" value="@Model?.PhoneNumber"
+                               class="form-control" placeholder="Enter phone number" required
+                               pattern="^0[35789]\d{8}$" title="Please enter a valid Vietnamese phone number (e.g., 0912345678)">
+                    </div>
+
+                    @if (ViewBag.Course != null)
+                    {
+                        <div class="mb-3">
+                            <label class="form-label">Course</label>
+                            <div class="form-control" readonly>@ViewBag.Course.Name</div>
+                        </div>
+                        <input type="hidden" id="CourseId" name="CourseId" value="@ViewBag.Course.CourseId" />
+                    }
+
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label" for="schedule">Schedule</label>
+                        <select id="schedule" name="Schedule" class="form-select" required>
+                            <option value="" disabled selected>Select a schedule</option>
+                            <option value="Morning">Morning (8am - 10:30am)</option>
+                            <option value="Afternoon">Afternoon (2pm - 4:30pm)</option>
+                            <option value="Evening">Evening (7pm - 9:30pm)</option>
+                        </select>
+                    </div>
+
+                    <div class="text-center mt-3 d-flex justify-content-between">
+                        <button type="submit" class="btn btn-success m-1">Save</button>
+                        <a asp-controller="Home" asp-action="Courses" class="btn btn-outline-secondary m-1">Cancel</a>
+                    </div>
+
+                    @if (ViewBag.Message != null)
+                    {
+                        <p class="text-danger text-center">@ViewBag.Message</p>
+                    }
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (TempData["AlertMessage"] != null)
+{
+    <script>
+        Swal.fire({
+            position: 'top-center',
+            icon: '@TempData["AlertType"]',
+            title: '@TempData["AlertMessage"]',
+            showConfirmButton: true,
+            timer: 5000
+        });
+    </script>
+}

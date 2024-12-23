@@ -1,0 +1,115 @@
+@{
+    ViewData["Title"] = "Exam Results";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<Project3.Models.CustomerInformation>
+@section Scripts {
+    <script>
+        // Hiển thị thông báo thành công
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <text>
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: '@TempData["SuccessMessage"]',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            </text>
+        }
+
+        // Hiển thị thông báo lỗi
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <text>
+                Swal.fire({
+                    position: "top-center",
+                    icon: "error",
+                    title: '@TempData["ErrorMessage"]',
+                    showConfirmButton: true,
+                    confirmButtonText: "OK"
+                });
+            </text>
+        }
+    </script>
+}
+
+
+<div class="bg-nav"></div>
+
+<!-- Exam Results Section -->
+<section class="container my-5">
+    <!-- Search Bar -->
+    <div class="row">
+        <div class="col-12">
+            <div class="mb-3 d-flex justify-content-between align-items-center">
+                <div class="d-flex">
+                    <!-- Form tìm kiếm ID -->
+                    <form method="post" action="@Url.Action("TestRegistration", "Home")" style=" justify-content: start; align-items: center; display: flex;">
+                        <input type="text" class="form-control" placeholder="Enter ID" name="id" required />
+                        <button type="submit" class="btn btn-search btn-search-custom">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.415l-3.85-3.85a1.007 1.007 0 0 0-.115-.098zm-5.291 1.1a5.5 5.5 0 1 1 0-11 5.5 5.5 0 0 1 0 11z" />
+                            </svg>
+                            Search
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exam Result Title -->
+    <div class="row text-center mt-4">
+        <div class="col-12">
+            <h1 class="fw-bold">Exam Result</h1>
+        </div>
+    </div>
+
+    <!-- Table Section -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-bordered text-center">
+                    <thead style="background-color: #283747F7;">
+                        <tr>
+                            <th>Id</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Course</th>
+                            <th>Exam Shift</th>
+                            <th>Mark</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Count > 0)
+                        {
+                            foreach (var customer in Model)
+                            {
+                                <tr>
+                                    <td style="color: #000000;">@customer.CustomerInformationId</td>
+                                    <td style="color: #000000;">@customer.FullName</td>
+                                    <td style="color: #000000;">@customer.Email</td>
+                                    <td style="color: #000000;">@customer.PhoneNumber</td>
+                                    <td style="color: #000000;">@customer.Course?.Name</td>
+                                    <td style="color: #000000;">@customer.Schedule</td>
+                                    <td style="color: #000000;">@customer.Mark?.ToString("F2")</td>
+                                    <td style="color: #000000;">@customer.Status</td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="8">No results found.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>

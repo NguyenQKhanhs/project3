@@ -1,0 +1,82 @@
+﻿@model Project3.Models.Instructor
+
+@{
+    Layout = "~/Views/Shared/_layoutadmin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4"></h5>
+            <div class="card">
+                <div class="card-body margin-1-3rem custom-bg">
+                    <h1 class="text-center ">Edit Instructor</h1>
+                    <div class="container mt-5 px-2">
+                        <form asp-action="admin_instructor_edit" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="InstructorId" value="@Model.InstructorId" />
+
+                            <div class="col-md-8 mx-auto">
+                                <label for="Name" class="labels">Name</label>
+                                <input type="text" id="Name" name="Name" class="form-control w-100" style="height:50px"
+                                    placeholder="Enter name" value="@Model.Name" required>
+                            </div>
+
+                            <div class="col-md-8 mx-auto mt-3">
+                                <label class="form-label " style="font-size: 18px">Gender</label>
+                                <div>
+                                    <input type="radio" asp-for="Gender" value="Male" id="genderMale" />
+                                    <label for="genderMale">Male</label>
+                                </div>
+                                <div>
+                                    <input type="radio" asp-for="Gender" value="Female" id="genderFemale" />
+                                    <label for="genderFemale">Female</label>
+                                </div>
+                                <span asp-validation-for="Gender" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-8 mx-auto">
+                                <label for="Bio" class="labels">Bio</label>
+                                <textarea id="Bio" name="Bio" class="form-control w-100" style="height:50px"
+                                    placeholder="Enter bio" required>@Model.Bio</textarea>
+                            </div>
+
+                            <div class="col-md-8 mx-auto">
+                                <label for="PhoneNumber" class="labels">Phone Number</label>
+                                <input type="text" id="PhoneNumber" name="PhoneNumber" class="form-control w-100"
+                                    style="height:50px" placeholder="Enter phone number" value="@Model.PhoneNumber"
+                                    required>
+                            </div>
+
+                            <div class="col-md-8 mx-auto">
+                                <label for="Email" class="labels">Email</label>
+                                <input type="email" id="Email" name="Email" class="form-control w-100"
+                                    style="height:50px" placeholder="Enter email" value="@Model.Email" required>
+                            </div>
+
+                            <div class="col-md-8 mx-auto">
+                                <label class="labels">Upload Image</label>
+                                <input type="file" name="Image" class="form-control w-100" />
+                                <div class="mt-2 " style="font-size: 18px; color: #222">
+                                    Current Image
+                                    <img src="@Model.ImageLink" class="m-3" alt="Current Image"
+                                        style="height: 205px; border: 1px solid #fff" />
+                                </div>
+                            </div>
+
+                            <br /><br />
+                            <div class="text-end col-sm-8 mx-auto">
+                                <button type="submit" class="btn btn-outline-success m-1">Save</button>
+                                <a asp-action="admin_instructor" class="btn btn-outline-secondary m-1">Back</a>
+                            </div>
+
+                            @if (ViewBag.Message != null)
+                            {
+                                <p class="text-danger">@ViewBag.Message</p>
+                            }
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

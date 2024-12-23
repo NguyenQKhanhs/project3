@@ -1,0 +1,55 @@
+@model Project3.Models.Account
+
+@{
+    ViewData["Title"] = "Edit Account";
+    Layout = "~/Views/Shared/_layoutadmin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body custom-bg" style="margin: 2.22rem!important">
+            <h1 class="text-center">Edit Account</h1>
+            <div class="container mt-3 px-2">
+                <form asp-action="admin_account_edit" method="post" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="AccountId" />
+
+                    <div class="col-md-8 mx-auto">
+                        <label asp-for="Username" class="labels">Username</label>
+                        <input asp-for="Username" class="form-control w-100" style="height:50px" placeholder="Enter Username" required />
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-8 mx-auto mt-3">
+                        <label asp-for="FullName" class="labels">Full Name</label>
+                        <input asp-for="FullName" class="form-control w-100" style="height:50px" placeholder="Enter Full Name" required />
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-8 mx-auto mt-3">
+                        <label asp-for="Email" class="labels">Email</label>
+                        <input asp-for="Email" class="form-control w-100" style="height:50px" placeholder="Enter Email" required />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="col-md-8 mx-auto mt-3">
+                        <label asp-for="Password" class="labels">Password</label>
+                        <input asp-for="Password" type="password" class="form-control w-100" style="height:50px" placeholder="Enter Password" required />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <br /><br />
+                    <div class="text-end col-sm-8 mx-auto">
+                        <button type="submit" class="btn btn-outline-success m-1">Save</button>
+                        <a asp-action="admin_account" class="btn btn-outline-secondary m-1">Back</a>
+                    </div>
+
+                    <!-- Display error message if any -->
+                    @if (ViewBag.Message != null)
+                    {
+                        <p class="text-danger">@ViewBag.Message</p>
+                    }
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

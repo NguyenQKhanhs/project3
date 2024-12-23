@@ -1,0 +1,65 @@
+@{
+    Layout = "~/Views/Shared/_layoutadmin.cshtml";
+}
+<br /><br /><br />
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4"></h5>
+            <div class="card">
+                <div class="card-body p-4">
+                    <div class="container mt-5 px-2">
+
+                        <div class="mb-2 d-flex justify-content-between align-items-center">
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-responsive table-borderless">
+
+                                <thead>
+                                    <tr class="bg-light">
+
+
+                                        <th>Name</th>
+                                        <th>Start</th>
+                                        <th>End</th>
+                                        <th scope="col" width="10%"></th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+
+
+                                        <td>Nguyễn Văn A</td>
+
+                                        <td>01-05-2023</td>
+                                        <td>01-05-2024</td>
+                                        <td><button type="button" class="btn btn-outline-danger m-1">Delete</button></td>
+
+
+
+                                    </tr>
+
+                                    
+
+
+
+
+                                </tbody>
+                            </table>
+                            <div class="text-end">
+                                <a a asp-area="" asp-controller="Admin" asp-action="admin_exam" class="btn btn-right btn-outline-secondary m-1">Back</a>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

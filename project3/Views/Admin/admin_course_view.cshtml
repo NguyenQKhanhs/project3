@@ -1,0 +1,113 @@
+@model Project3.Models.Course
+
+@{
+    Layout = "~/Views/Shared/_layoutadmin.cshtml";
+    var items = Model.Content.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
+}
+<br /><br />
+<section id="course" class="">
+    <div class="container">
+        <div class="row">
+            <!-- Left Column: Course Details -->
+            <div class="col-lg-8">
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body  custom-bg" style="margin: -0.4rem!important">
+                        <div class="course-img text-center mb-4">
+                            <img src="@Model.ImageUrl" alt="Image of @Model.Name" class="img-fluid rounded"
+                                style="max-width: 90%; height: auto; margin-top: 10px;">
+                        </div>
+                        <h2 class="">Description</h2>
+                        <p class="text-muted" style="padding: 0 0 0 16px;; font-size: 17px" >@Model.Description</p>
+
+                        <h2 class="">Course Content</h2>
+                        <ul class="list-group list-group-flush; font-size: 17px" >
+                            @foreach (var item in items)
+                            {
+                                <li class="list-group-item">+ @Html.Raw(item.Trim())</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Course Information -->
+            <div class="col-lg-4">
+                <div class="card shadow-sm">
+                    <div class="card-body custom-bg" style="margin: -0.4rem!important;position: fixed;top: 5.7%;">
+                        <h3 class="text-center text-primary mb-4">@Model.Name</h3>
+                        <h4 class="">Course Information</h4>
+                        <ul class="list-unstyled mt-3">
+                            <li class="d-flex justify-content-between py-2 border-bottom">
+                                <span class="font-weight-bold" style="color: #222">Starts:</span>
+                                <span>@Model.StartDate.ToShortDateString()</span>
+                            </li>
+                            <li class="d-flex justify-content-between py-2 border-bottom">
+                                <span class="font-weight-bold" style="color: #222">Duration:</span>
+                                <span>@Model.Duration Weeks</span>
+                            </li>
+                            <li class="d-flex justify-content-between py-2 border-bottom">
+                                <span class="font-weight-bold" style="color: #222">Study Level:</span>
+                                <span>@Model.StudyLevel</span>
+                            </li>
+                        </ul>
+                        <div class="text-end">
+                            <a asp-controller="Admin" asp-action="admin_course"
+                                class="btn btn-outline-secondary">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .course-area {
+        background: linear-gradient(90deg, #FFA07A, #FFA500, #FF8C00, #D45F00, #FF4500, #FF6347, #CD853F);
+        background-size: 400% 400%;
+        animation: rainbow-animation 10s infinite;
+        color: white;
+        padding: 50px 0;
+    }
+
+    @@keyframes rainbow-animation {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    .card {
+        border: none;
+        border-radius: 10px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    h2,
+    h3,
+    h4 {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .text-primary {
+        color: #FF6A00 !important;
+    }
+
+    .text-muted {
+        color: #6c757d !important;
+    }
+
+    .list-group-item {
+        border: none;
+    }
+</style>

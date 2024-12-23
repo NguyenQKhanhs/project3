@@ -1,0 +1,125 @@
+@{
+    Layout = "~/Views/Shared/_layoutadmin.cshtml";
+}
+@model Project3.Models.Course
+
+
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4"></h5>
+            <div class="card">
+                <div class="card-body custom-bg" style="margin: 0.75rem !important">
+                    <h1 class="text-center">Add Course</h1>
+                    <div class="container mt-3 px-2" style="padding: 0 15%!important">
+                        <div class="mb-2 d-flex justify-content-between align-items-center">
+                        </div>
+                        <div class="table-responsive">
+                            <!-- Form cần thêm enctype để upload file -->
+                            <form asp-action="admin_course_add" method="post" enctype="multipart/form-data">
+                                <table class="table table-responsive table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <!-- Tên khóa học -->
+                                            <div class="col-md-12">
+                                                <label class="labels">Name</label>
+                                                <input asp-for="Name" class="form-control" placeholder="Enter Course Name" required>
+                                                <span asp-validation-for="Name" class="text-danger"></span>
+                                                <!-- Mô tả khóa học -->
+                                                <div class="col-md-12">
+                                                    <label class="labels">Description</label>
+                                                    <textarea asp-for="Description" class="form-control" placeholder="Enter Course Description" required></textarea>
+                                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label class="labels">Course Content</label>
+                                                    <textarea asp-for="Content" class="form-control" placeholder="Enter Course Content (one topic per line)" rows="8" required></textarea>
+                                                    <span asp-validation-for="Content" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+    
+                                            <!-- Ngày bắt đầu -->
+                                            <div class="col-md-12">
+                                                <label class="labels">Start Date</label>
+                                                <input asp-for="StartDate" type="date" class="form-control" required>
+                                                <span asp-validation-for="StartDate" class="text-danger"></span>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <label class="labels">Exam Date</label>
+                                                <input asp-for="ExamDate" type="date" class="form-control" required>
+                                                <span asp-validation-for="ExamDate" class="text-danger"></span>
+                                            </div>
+
+                                            <!-- Trình độ học vấn -->
+                                            <div class="col-md-12">
+                                                <label class="labels">Study Level</label>
+                                                <select asp-for="StudyLevel" class="form-control" required>
+                                                    <option value="">Select Level</option>
+                                                    <option value="Beginner">Beginner</option>
+                                                    <option value="Intermediate">Intermediate</option>
+                                                    <option value="Advanced">Advanced</option>
+                                                </select>
+                                                <span asp-validation-for="StudyLevel" class="text-danger"></span>
+                                            </div>
+
+                                            <!-- Thời gian khóa học -->
+                                            <div class="col-md-12">
+                                                <label class="labels">Duration (in weeks)</label>
+                                                <input asp-for="Duration" type="number" class="form-control" placeholder="Enter Duration in Weeks" min="1" required>
+                                                <span asp-validation-for="Duration" class="text-danger"></span>
+                                            </div>
+                                            <!-- Giá khóa học -->
+                                            <div class="col-md-12">
+                                                <label class="labels">Price</label>
+                                                <input asp-for="Price" class="form-control" step="0.01" placeholder="Enter Course Price" required>
+                                                <span asp-validation-for="Price" class="text-danger"></span>
+                                            </div>
+                                            <!-- Ảnh khóa học -->
+                                            <div class="col-md-12">
+                                                <label for="image">Ảnh Khóa Học:</label>
+                                                <input type="file" name="image" class="form-control" required />
+                                            </div>
+                                            <!-- Danh mục khóa học -->
+                                            <div class="col-md-12">
+                                                <label class="labels">Category</label>
+                                                <select asp-for="CategoryId" class="form-control" required>
+                                                    <option value="">Select Category</option>
+                                                    <option value="1">Frontend</option>
+                                                    <option value="2">Backend</option>
+                                                </select>
+                                                <span asp-validation-for="CategoryId" class="text-danger"></span>
+                                            </div>
+                                            <!-- Nút gửi form -->
+                                            <div class="mt-3">
+                                                <div class="text-end d-flex justify-content-end align-items-center">
+                                                    <button type="submit" class="btn btn-primary">Add Course</button>
+                                                    <a asp-area="" asp-controller="Admin" asp-action="admin_course" class="btn-right btn btn-outline-secondary m-1">Back</a>
+                                                </div>
+                                            </div>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+
+                            <!-- Thông báo lỗi/ảnh (nếu có) -->
+                            @if (ViewBag.Message != null)
+                            {
+                                <p class="text-danger">@ViewBag.Message</p>
+                            }
+                            @if (ViewBag.ImageUrl != null)
+                            {
+                                <div>
+                                    <p>Uploaded Image:</p>
+                                    <img src="@ViewBag.ImageUrl" alt="Uploaded Course Image" class="img-thumbnail" style="max-width: 300px;" />
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- CKEditor Integration -->

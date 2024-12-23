@@ -1,0 +1,49 @@
+﻿@model Project3.Models.Account
+
+@{
+    ViewData["Title"] = "Add Account";
+    Layout = "~/Views/Shared/_layoutadmin.cshtml";
+}
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <div class="card">
+                <div class="card-body margin-1-3rem custom-bg">
+                    <h1 style="color:white" class="text-center">Add Account</h1>
+                    <div class="container mt-1 px-2" style="padding: 0 15%!important">
+                        <form asp-action="admin_account_add" method="post">
+                            <div class="mb-3">
+                                <label asp-for="Username" class="form-label"></label>
+                                <input asp-for="Username" class="form-control" />
+                                <span asp-validation-for="Username" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="FullName" class="form-label"></label>
+                                <input asp-for="FullName" class="form-control" />
+                                <span asp-validation-for="FullName" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Email" class="form-label"></label>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="Password" class="form-label"></label>
+                                <input asp-for="Password" type="password" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="text-end col-md-12 mx-auto">
+                                <button type="submit" class="btn btn-primary">Add Account</button>
+                                <a asp-action="admin_account" class="btn btn-secondary">Cancel</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

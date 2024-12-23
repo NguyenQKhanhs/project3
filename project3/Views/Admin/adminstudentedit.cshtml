@@ -1,0 +1,77 @@
+﻿@model Project3.Models.CustomerInformation
+
+@{
+    Layout = "~/Views/Shared/_layoutadmin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title fw-semibold mb-4"></h5>
+            <div class="card">
+                <div class="card-body margin-1-3rem custom-bg">
+                    <h1 class="text-center ">Edit Student</h1>
+                    <div class="container mt-1 px-2">
+                        <form asp-action="adminstudentedit" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="CustomerInformationId" value="@Model.CustomerInformationId" />
+
+                            <div class="col-md-8 mx-auto">
+                                <label for="FullName" class="labels">Full Name</label>
+                                <input type="text" id="FullName" name="FullName" class="form-control w-100" style="height:50px" placeholder="Nhập họ và tên" value="@Model.FullName" required>
+                            </div>
+
+                            <div class="col-md-8 mx-auto">
+                                <label for="Email" class="labels" >Email</label>
+                                <input type="email" id="Email" name="Email" class="form-control w-100" style="height:50px" placeholder="Nhập email" value="@Model.Email" required>
+                            </div>
+
+                            <div class="col-md-8 mx-auto">
+                                <label for="PhoneNumber" class="labels" >Phone Number</label>
+                                <input type="tel" id="PhoneNumber" name="PhoneNumber" class="form-control w-100" style="height:50px" placeholder="Nhập số điện thoại" value="@Model.PhoneNumber" required>
+                            </div>
+
+                            <div class="col-md-8 mx-auto">
+                                <label for="Mark" class="labels">Mark</label>
+                                <input type="text" id="Mark" name="Mark" class="form-control w-100" style="height:50px" placeholder="Enter Mark" value="@Model.Mark" required>
+                            </div>
+
+                            <div class="col-md-8 mx-auto">
+                                <label class="labels">Status</label>
+                                <select asp-for="Status" class="form-control w-100" style="height:50px" required>
+
+                                    <option value="Unattempted">Unattempted</option>
+                                    <option value="Attempted">Attempted</option>
+                                </select>
+                                <span asp-validation-for="Status" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-8 mx-auto">
+                                <label class="labels">Schedule</label>
+                                <select asp-for="Schedule" class="form-control w-100" style="height:50px" required>
+
+                                    <option value="Morning">Morning</option>
+                                    <option value="Afternoon">Afternoon</option>
+                                    <option value="Evening">Evening</option>
+                                </select>
+                                <span asp-validation-for="Schedule" class="text-danger"></span>
+                            </div>
+
+                            
+                            <br /><br />
+                            <div class="text-end col-sm-8 mx-auto">
+                                <button type="submit" class="btn btn-outline-success m-1">Save</button>
+                                <a asp-action="AdminStudent" class="btn btn-outline-secondary m-1">Back</a>
+                            </div>
+
+                            <!-- Hiển thị thông báo nếu có lỗi -->
+                            @if (ViewBag.Message != null)
+                            {
+                                <p class="text-danger">@ViewBag.Message</p>
+                            }
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

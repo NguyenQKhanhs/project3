@@ -1,0 +1,179 @@
+@using Microsoft.AspNetCore.Mvc.Routing
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Symphony Limited</title>
+    <link rel="icon" type="image/png" href="~/images/logo.png">
+    <link rel="stylesheet" href="~/adminasset/css/style-custom.css">
+    <link rel="stylesheet" href="~/adminasset/css/styles.min.css" />
+
+    @* Thêm các section scripts nếu cần *@
+    @RenderSection("Styles", required: false)
+</head>
+
+<body>
+    <style>
+        .icon-spacing {
+            margin-right: 8px; /* Điều chỉnh giá trị này để thay đổi khoảng cách */
+        }
+    </style>
+<!-- Body Wrapper -->
+<div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar" style="border-radius: 15px; margin: 1.8%;margin-top:2.65%; overflow: hidden">
+        <div class="left-sidebar-container" style="background-color: #ffffff ">
+            <div class="brand-logo d-flex align-items-center justify-content-between">
+                <a href="/Home/Index" class="text-nowrap logo-img">
+                    <img src="~/images/Logo_web.png" alt="" style="width:200px" />
+                </a>
+                <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+                    <i class="ti ti-x fs-8"></i>
+                </div>
+            </div>
+            <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+                <ul id="sidebarnav">
+                    <li class="nav-small-cap">
+                        <i class="ti ti-dots nav-small-cap-icon fs-6"></i>
+                        <span class="hide-menu">Admin</span>
+                    </li>
+                    <li class="sidebar-item @GetActiveClass("Admin", "admin")">
+                        <a class="sidebar-link" asp-area="" asp-controller="Admin" asp-action="admin" aria-expanded="false">
+                                <span class="hide-menu">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-terminal-dash icon-spacing" viewBox="0 0 16 16">
+                                        <path d="M2 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h5.5a.5.5 0 0 1 0 1H2a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v4a.5.5 0 0 1-1 0V4a1 1 0 0 0-1-1z" />
+                                        <path d="M3.146 5.146a.5.5 0 0 1 .708 0L5.177 6.47a.75.75 0 0 1 0 1.06L3.854 8.854a.5.5 0 1 1-.708-.708L4.293 7 3.146 5.854a.5.5 0 0 1 0-.708M5.5 9a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H6a.5.5 0 0 1-.5-.5M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0m-5.5 0a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5" />
+                                    </svg>Dashboard
+                                </span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item @GetActiveClass("Admin", "adminstudent")">
+                        <a class="sidebar-link" asp-area="" asp-controller="Admin" asp-action="adminstudent" aria-expanded="false">
+                                <span class="hide-menu">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-people-fill icon-spacing" viewBox="0 0 16 16">
+                                        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
+                                    </svg>
+                                    Student
+                                </span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @GetActiveClass("Admin", "admin_instructor")">
+                        <a class="sidebar-link" asp-area="" asp-controller="Admin" asp-action="admin_instructor" aria-expanded="false">
+                                <span class="hide-menu">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-person-badge-fill icon-spacing" viewBox="0 0 16 16">
+                                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6m5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1z" />
+                                    </svg>Instructor
+                                </span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @GetActiveClass("Admin", "admin_class")">
+                        <a class="sidebar-link" asp-area="" asp-controller="Admin" asp-action="admin_class" aria-expanded="false">
+                                <span class="hide-menu">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-house icon-spacing" viewBox="0 0 16 16">
+                                        <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z" />
+                                    </svg>Class
+                                </span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @GetActiveClass("Admin", "admin_course")">
+                        <a class="sidebar-link" asp-area="" asp-controller="Admin" asp-action="admin_course" aria-expanded="false">
+                                <span class="hide-menu">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-card-list icon-spacing" viewBox="0 0 16 16">
+                                        <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z" />
+                                        <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8m0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5m-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0M4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0" />
+                                    </svg>Course
+                                </span>
+                        </a>
+                    </li>
+                    
+                    <li class="sidebar-item @GetActiveClass("Admin", "admin_feedback")">
+                        <a class="sidebar-link" asp-area="" asp-controller="Admin" asp-action="admin_feedback" aria-expanded="false">
+                                <span class="hide-menu">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-person-lines-fill icon-spacing" viewBox="0 0 16 16">
+                                        <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z" />
+                                    </svg>Feedback
+                                </span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @GetActiveClass("Admin", "admin_account")">
+                        <a class="sidebar-link" asp-area="" asp-controller="Admin" asp-action="admin_account" aria-expanded="false">
+                                <span class="hide-menu">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-person-vcard-fill icon-spacing" viewBox="0 0 16 16">
+                                        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5M9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8m1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5m-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96q.04-.245.04-.5M7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0" />
+                                    </svg>Account
+                                </span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item @GetActiveClass("Auth", "Logout")">
+                        <a class="sidebar-link" asp-area="" asp-controller="Auth" asp-action="Logout" aria-expanded="false">
+                                <span class="hide-menu">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-person-fill-lock icon-spacing" viewBox="0 0 16 16">
+                                        <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0m-9 8c0 1 1 1 1 1h5v-1a2 2 0 0 1 .01-.2 4.49 4.49 0 0 1 1.534-3.693Q8.844 9.002 8 9c-5 0-6 3-6 4m7 0a1 1 0 0 1 1-1v-1a2 2 0 1 1 4 0v1a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1zm3-3a1 1 0 0 0-1 1v1h2v-1a1 1 0 0 0-1-1" />
+                                    </svg>Logout
+                                </span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+    <!-- Sidebar End -->
+
+    <!-- Main wrapper -->
+    <div class="body-wrapper">
+        <header class="app-header">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <ul class="navbar-nav">
+                    <li class="nav-item d-block d-xl-none">
+                        <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                            <i class="ti ti-menu-2"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="body-page-custom">
+            @RenderBody()
+        </div>
+    </div>
+
+    <script src="~/adminasset/libs/jquery/dist/jquery.min.js"></script>
+    <script src="~/adminasset/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/adminasset/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="~/adminasset/libs/simplebar/dist/simplebar.js"></script>
+    <script src="~/adminasset/js/sidebarmenu.js"></script>
+    <script src="~/adminasset/js/app.min.js"></script>
+    <script src="~/adminasset/js/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- Summernote CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.css" rel="stylesheet">
+
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+        <!-- Summernote JS -->
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.20/dist/summernote.min.js"></script>
+
+    @* Render các script nếu có *@
+    @RenderSection("Scripts", required: false)
+</div>
+</body>
+
+</html>
+
+@functions {
+public string GetActiveClass(string controller, string action)
+{
+var currentController = Context.Request.RouteValues["controller"]?.ToString();
+var currentAction = Context.Request.RouteValues["action"]?.ToString();
+
+return currentController == controller && currentAction == action ? "active" : "";
+}
+}

@@ -1,0 +1,201 @@
+@model dynamic
+
+@{
+    Layout = "~/Views/Shared/_layoutadmin.cshtml";
+}
+
+<br>
+<div class="container-fluid">
+    <div class="card my-3">
+        <div class="card-body">
+            <!-- Hàng 1: Thông tin người dùng và biểu đồ -->
+            <div class="row g-3 mb-2" style="height: 500px;">
+                <!-- Thông tin người dùng -->
+                <div class="col-md-4 h-100">
+                    <div class="card h-100" style="">
+                        <div class="card-body h-100 bg-white rounded-3">
+                            <br>
+                            <h5 style="color: #222; font-size: 30px" class="mt-2" >Top 5 Students with Highest Scores 🎉</h5>
+                            @if (Model.TopStudents != null && Model.TopStudents.Count > 0)
+                            {
+                            <ul class="list-group mt-3">
+                                @foreach (var student in Model.TopStudents)
+                                {
+                                <li class="list-group-item">
+                                    <h5 style="color: #222" class="mb-1">@student.Name</h5>
+                                            <small style="color: #555">Score: @student.Score.ToString("F2")</small>
+                                </li>
+                                }
+                            </ul>
+                            }
+                            else
+                            {
+                            <h5 class="text-dark mt-3">No student data available.</h5>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Biểu đồ -->
+                <div class="col-md-8 h-100">
+                    <div class="card h-100">
+                        <div class="card-body h-100 bg-white rounded-3 p-3">
+                            <canvas id="myChart" style="width: 100%; height: 100%"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hàng 2: Biểu đồ nhóm và biểu đồ tròn -->
+            <div class="row g-3 mt-3" style="height: 500px;">
+                <!-- Biểu đồ nhóm -->
+                <div class="col-md-8 h-100">
+                    <div class="card h-100 ">
+                        <div class="card-body h-100 bg-white rounded-3 p-3">
+                            <canvas id="lineChart" style="width: 100%;height: 100%"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Biểu đồ tròn -->
+                <div class="col-md-4 h-100">
+                    <div class="card h-100" style="">
+                        <div class="card-body h-100 bg-white rounded-3 p-3">
+                            <canvas id="pieChart" style="width: 100%;height: 100%"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+<script>
+    // Data from Controller
+    const months = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.Months));
+    const passCounts = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.PassCounts));
+    const failCounts = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.FailCounts));
+    const newRegistrations = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.NewRegistrations)); // Data for the line chart
+
+    // Grouped bar chart
+    const ctxBar = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+            labels: months, // Month labels from data
+            datasets: [
+                {
+                    label: 'Pass',
+                    data: passCounts, // Pass count data
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Fail',
+                    data: failCounts, // Fail count data
+                    backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                },
+                title: {
+                    display: true,
+                    text: 'Number of Pass and Fail Students by Month'
+                }
+            },
+            scales: {
+                x: { stacked: false },
+                y: { beginAtZero: true }
+            }
+        }
+    });
+
+    // Line chart
+    const ctxLine = document.getElementById('lineChart').getContext('2d');
+    const lineChart = new Chart(ctxLine, {
+        type: 'line',
+        data: {
+            labels: months, // Month labels from data
+            datasets: [
+                {
+                    label: 'Number of New Registrations',
+                    data: newRegistrations, // Data for new registrations
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 2,
+                    tension: 0.4 // Smooth curve
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                },
+                title: {
+                    display: true,
+                    text: 'New Registrations Per Month'
+                }
+            },
+            scales: {
+                x: { beginAtZero: true },
+                y: { beginAtZero: true }
+            }
+        }
+    });
+
+    // Pie chart
+    const ctxPie = document.getElementById('pieChart').getContext('2d');
+    const pieChart = new Chart(ctxPie, {
+        type: 'pie',
+        data: {
+            labels: ['Pass', 'Fail'],
+            datasets: [{
+                label: 'Student Structure',
+                data: [passCounts.reduce((a, b) => a + b, 0), failCounts.reduce((a, b) => a + b, 0)], // Total data for Pass and Fail
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.6)', // Color for Pass
+                    'rgba(255, 99, 132, 0.6)'  // Color for Fail
+                ],
+                borderColor: 'white', // Border color
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'top'
+                },
+                title: {
+                    display: true,
+                    text: 'Student Pass and Fail Structure'
+                },
+                datalabels: {
+                    color: 'white', // Text color
+                    formatter: (value, context) => {
+                        const total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                        const percentage = ((value / total) * 100).toFixed(0) + '%';
+                        return percentage; // Display percentage
+                    }
+                }
+            }
+        }
+    });
+</script>
